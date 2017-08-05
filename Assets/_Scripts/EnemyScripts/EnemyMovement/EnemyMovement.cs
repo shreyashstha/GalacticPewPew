@@ -47,4 +47,9 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement {
     /// Called by OnTriggerEnter2D in base class
     /// </summary>
     protected abstract void ToggleFreeze();
+
+    /// <summary>
+    /// Reset position when enemyship is out of bounds or any other reason.
+    /// </summary>
+    protected abstract void ResetPosition();
 }
