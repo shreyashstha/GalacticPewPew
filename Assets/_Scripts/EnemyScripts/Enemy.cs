@@ -52,11 +52,8 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         health -= damage;
         if (health <= 0 && !isDead)
         {
-            Debug.Log("Now I am dead!");
-            isDead = true;
-            animator.SetTrigger("death");
-            Invoke("Die", 0.4f);
-        }else if (!isDead)
+            StartCoroutine(Die());
+        } else if (!isDead)
         {
             StartCoroutine("Flash");
         }
@@ -65,8 +62,12 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     /// <summary>
     /// Performs final duties
     /// </summary>
-    private void Die()
+    IEnumerator Die()
     {
+        isDead = true;
+        boxCollider.enabled = false;
+        animator.SetTrigger("death");
+        yield return new WaitForSeconds(0.4f);
         //Score stuff 
         GameManager.instance.AddScore(this.score);
         this.transform.parent = null; 
@@ -111,6 +112,7 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     {
         this.health = this.startHealth;
         isDead = false;
+        boxCollider.enabled = true;
     }
 
     public void OnDisable()

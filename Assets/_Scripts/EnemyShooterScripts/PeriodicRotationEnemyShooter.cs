@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PeriodicRotationEnemyShooter : EnemyShooter {
 
-    private const float _RADIUS = 0.7f;
+    private const float _RADIUS = -0.7f;
 
     [SerializeField]
     private int numberOfShots;

@@ -64,10 +64,11 @@ public class EnemyMovementStraight : EnemyMovement {
 
     protected override void ResetPosition()
     {
-        Vector3 newPos = startPosition;
-        float newY = (float)Random.Range(3, 8);
+        Vector3 newPos = this.transform.position;
+        float newY = newPos.y - 1f;
         newPos.y = newY;
-        this.transform.position = startPosition;
+        moveLeft = !moveLeft;
+        this.transform.position = newPos;
     }
 
     public override void OnEnable()
