@@ -8,6 +8,8 @@ public class EnemyMovementStraight : EnemyMovement {
     private float speed = 0.0f;
     private Vector3 startPosition;
     private bool moveLeft = true;
+    private float slowDuration = 5.0f;
+    
 
     // Use this for initialization
 	void Start () {
@@ -25,7 +27,7 @@ public class EnemyMovementStraight : EnemyMovement {
         Move();
 
         // Reset Enemy in the Formation
-        if (Mathf.Abs(transform.position.x) > 9f)
+        if (Mathf.Abs(transform.position.x) > 15f)
         {
             ResetPosition();
         }
@@ -45,7 +47,14 @@ public class EnemyMovementStraight : EnemyMovement {
 
     protected override void ToggleSlow()
     {
-        //throw new NotImplementedException();
+        
+    }
+
+    IEnumerator ToggleSlowCoroutine()
+    {
+        speed = speed / 2;
+        yield return new WaitForSeconds(slowDuration);
+        speed = speed * 2;
     }
 
     protected override void ToggleFreeze()
@@ -58,7 +67,25 @@ public class EnemyMovementStraight : EnemyMovement {
         Vector3 newPos = startPosition;
         float newY = (float)Random.Range(3, 8);
         newPos.y = newY;
-        this.transform.position = newPos;
+        this.transform.position = startPosition;
+    }
+
+    public override void OnEnable()
+    {
+        startPosition = this.transform.position;
+        if (this.transform.position.x > 0)
+        {
+            moveLeft = true;
+        }
+        else if (this.transform.position.x < 0)
+        {
+            moveLeft = false;
+        }
+    }
+
+    public override void OnDisable()
+    {
+        //throw new NotImplementedException();
     }
     //*********** EnemyMovement Implementation **********
 }

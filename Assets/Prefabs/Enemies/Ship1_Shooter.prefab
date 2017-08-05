@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114860258647233134}
   - component: {fileID: 114458306183224256}
   - component: {fileID: 114220021452937802}
+  - component: {fileID: 114502485576757324}
   m_Layer: 8
   m_Name: Ship1_Shooter
   m_TagString: Enemy
@@ -162,8 +163,20 @@ MonoBehaviour:
   barrel:
   - {fileID: 4171288113420238}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 2
-  chanceToShoot: 85
+  attackSpeed: 1
+  chanceToShoot: 100
+--- !u!114 &114502485576757324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518973067741386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1be9b954fc25f44fa2c7ead950a273d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!114 &114860258647233134
 MonoBehaviour:
   m_ObjectHideFlags: 1

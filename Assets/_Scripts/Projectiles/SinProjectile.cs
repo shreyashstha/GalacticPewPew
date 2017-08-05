@@ -9,23 +9,19 @@ public class SinProjectile : Projectile {
     public float frequency = 1.0f;
 
     //*****Private variables*****
-    private Vector3 startPos;
+    private Vector3 startPosition;
     private bool initial = true;    //For Setting up intial position. Since object pooling, position is set after enabling, need to get start position in update once.
     private float angle = 0.0f;
 
     public override void OnEnable()
     {
         angle = 0f;
-        initial = true;
+        startPosition = this.transform.position;
     }
 
     // Use this for initialization
     public override void Update () {
-        if (initial)
-        {
-            startPos = this.transform.position;
-            initial = false;
-        }
+        
         base.Update();
         Movement();
     }
@@ -34,7 +30,7 @@ public class SinProjectile : Projectile {
     {
         Vector3 newPos = this.transform.position;
         Debug.Log(this.transform.position + "...angle..." + angle);
-        newPos.x = startPos.x + (amplitude * Mathf.Sin(angle * frequency));
+        newPos.x = startPosition.x + (amplitude * Mathf.Sin(angle * frequency));
         newPos.y = newPos.y - speed * Time.deltaTime;
         this.transform.position = newPos;
         angle += Time.deltaTime;

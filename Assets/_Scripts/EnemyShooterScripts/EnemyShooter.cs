@@ -69,7 +69,7 @@ public class EnemyShooter : MonoBehaviour, IEnemyShooter, IPoolableObject {
     public virtual void OnEnable()
     {
         //Assigning a random value to attack speed counter so that all the enemies don't shoot at the same time.
-        asCounter = Random.Range(1.0f, attackSpeed);
+        //asCounter = Random.Range(1.0f, attackSpeed);
 
         pool = gameObject.GetComponent<ObjectPool>();
         if (pool != null && pool._OBP_PoolLength == 0)

@@ -27,13 +27,14 @@ GameObject:
   - component: {fileID: 114273680713240912}
   - component: {fileID: 114984385843452414}
   - component: {fileID: 114437138102597508}
+  - component: {fileID: 114435699330325314}
   m_Layer: 8
   m_Name: Ship8_UFO
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1765545839148716
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,8 +69,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1412645146711458}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4590889772727946}
@@ -162,6 +163,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   score: 10
+--- !u!114 &114435699330325314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412645146711458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 3
+  frequency: 1
+  speed: 0.5
 --- !u!114 &114437138102597508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel: []
   projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
-  attackSpeed: 4
+  attackSpeed: 2.5
   chanceToShoot: 100
   numberOfShots: 4
   intervalBetweenShots: 0.2

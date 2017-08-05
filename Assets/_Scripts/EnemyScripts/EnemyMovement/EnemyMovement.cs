@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class EnemyMovement : MonoBehaviour, IMovement {
+public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject {
 
     private bool canMove = true;
 
@@ -52,4 +53,8 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement {
     /// Reset position when enemyship is out of bounds or any other reason.
     /// </summary>
     protected abstract void ResetPosition();
+
+    public abstract void OnEnable();
+
+    public abstract void OnDisable();
 }

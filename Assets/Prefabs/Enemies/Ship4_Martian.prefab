@@ -67,8 +67,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822144744622780}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.38, y: 8.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4045313312642018}
@@ -163,7 +163,7 @@ MonoBehaviour:
   - {fileID: 4045313312642018}
   projectile: {fileID: 1234486391598050, guid: 07a53d5df11e77b46b3a6a8ee7a07860, type: 2}
   attackSpeed: 3
-  chanceToShoot: 85
+  chanceToShoot: 100
   numberOfShots: 2
   intervalBetweenShots: 0.75
 --- !u!114 &114978726373448128
