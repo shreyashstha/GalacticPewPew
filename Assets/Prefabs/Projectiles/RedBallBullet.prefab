@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2383dc2cc40c8874eb524fbc63449fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 6
   damage: 10
-  amplitude: 1
-  frequency: 4
+  amplitude: 2
+  frequency: 6
 --- !u!212 &212795024299062014
 SpriteRenderer:
   m_ObjectHideFlags: 1

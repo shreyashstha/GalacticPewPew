@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b2acc0c3c958d48b8d42d9004514d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.3
+  attackSpeed: 0.35
   projectile: {fileID: 1245100261290520, guid: dda155411b43769478448914d24872a6, type: 2}
   shipNose: {fileID: 4209744358371896}
 --- !u!114 &114526175542833532

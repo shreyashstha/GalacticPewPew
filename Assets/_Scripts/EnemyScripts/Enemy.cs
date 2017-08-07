@@ -70,7 +70,6 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         yield return new WaitForSeconds(0.4f);
         //Score stuff 
         GameManager.instance.AddScore(this.score);
-        this.transform.parent = null; 
         gameObject.SetActive(false);
     }
 

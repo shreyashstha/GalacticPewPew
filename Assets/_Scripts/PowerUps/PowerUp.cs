@@ -15,7 +15,7 @@ public abstract class PowerUp : MonoBehaviour, IPowerUp {
      * calls EnablePowerUp
      **/
     public virtual void Start () {
-        player = GameManager.instance.Player.transform;
+        player = GameManager.instance.m_Player.transform;
         GameObject[] otherPowerUpsInScene;
         otherPowerUpsInScene = GameObject.FindGameObjectsWithTag(gameObject.tag);
         if (otherPowerUpsInScene.Length > 0)

@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114798044641095790}
   - component: {fileID: 114872988949160622}
   - component: {fileID: 114372237466466288}
+  - component: {fileID: 114452177095830918}
   m_Layer: 8
   m_Name: Ship2_Muscle
   m_TagString: Enemy
@@ -177,6 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114452177095830918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947698546487420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1be9b954fc25f44fa2c7ead950a273d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedX: 1.5
+  speedY: 0
 --- !u!114 &114798044641095790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,8 +219,8 @@ MonoBehaviour:
   - {fileID: 4870007264138544}
   - {fileID: 4009701818625972}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 3
-  chanceToShoot: 80
+  attackSpeed: 2
+  chanceToShoot: 90
 --- !u!212 &212297606038352952
 SpriteRenderer:
   m_ObjectHideFlags: 1

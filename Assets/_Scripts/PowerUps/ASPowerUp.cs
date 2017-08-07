@@ -18,9 +18,9 @@ public class ASPowerUp : PowerUp {
     IEnumerator IncreaseAttackSpeed(float multiplier, float time)
     {
         attackSpeedReset = false;
-        GameManager.instance.PlayerShooter.AttackSpeed *= multiplier;
+        GameManager.instance.m_PlayerShooter.AttackSpeed *= multiplier;
         yield return new WaitForSeconds(time);
-        GameManager.instance.PlayerShooter.AttackSpeed /= multiplier;
+        GameManager.instance.m_PlayerShooter.AttackSpeed /= multiplier;
         attackSpeedReset = true;
         DisablePowerUp();
     }
@@ -30,7 +30,7 @@ public class ASPowerUp : PowerUp {
         if (!attackSpeedReset)
         {
             Debug.Log("I was deleted before reset so I reset on Destroy");
-            GameManager.instance.PlayerShooter.AttackSpeed /= attackSpeedMultiplier;
+            GameManager.instance.m_PlayerShooter.AttackSpeed /= attackSpeedMultiplier;
         }
     }
 

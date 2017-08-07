@@ -20,14 +20,10 @@ public class EnemyMovementWave : EnemyMovement {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update ()
+    {
+        base.Update();
         Move();
-
-        // Reset Enemy in the Formation
-        if (Mathf.Abs(transform.position.y) > 15f)
-        {
-            ResetPosition();
-        }
     }
 
     //*********** EnemyMovement Implementation **********
@@ -37,6 +33,7 @@ public class EnemyMovementWave : EnemyMovement {
         Vector3 newPos = this.transform.position;
         newPos.x = startPosition.x + (amplitude * Mathf.Sin(angle * frequency));
         newPos.y = newPos.y - speed * Time.deltaTime;
+        ChangeRotation(newPos);
         this.transform.position = newPos;
         angle += Time.deltaTime;
     }
@@ -50,11 +47,6 @@ public class EnemyMovementWave : EnemyMovement {
     {
         angle = 0f;
         startPosition = this.transform.position;
-    }
-
-    protected override void ResetPosition()
-    {
-        transform.position = startPosition;
     }
 
     protected override void ToggleFreeze()

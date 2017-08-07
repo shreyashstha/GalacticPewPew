@@ -17,6 +17,37 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
     }
 
     /// <summary>
+    /// Rotates the gameobject to face target direction. Sprites are facing down so 90 degrees are added to the new rotation.
+    /// </summary>
+    /// <param name="targetPosition"></param>
+    protected virtual void ChangeRotation(Vector3 targetPosition)
+    {
+        Vector2 direction = targetPosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle += 90f;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = rotation;
+    }
+
+    /// <summary>
+    /// Disable the Enemy gameobject when out of bounds. This is so that we don't overflood the game with enemies and they are removed when not killed.
+    /// </summary>
+    private void DisableShipOOB()
+    {
+        if (transform.position.y < Boundary.MinimumY() - 3f || transform.position.y > Boundary.MaximumY() + 3f
+            || transform.position.x < Boundary.MinimumX() -3f || transform.position.x > Boundary.MaximumX() + 3f)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    // Update is called once per frame
+    public virtual void Update()
+    {
+        DisableShipOOB();
+    }
+
+    /// <summary>
     /// OnTriggerEnter2D to detect status effect stuff like poison or Freeze.
     /// </summary>
     /// <param name="other"></param>
@@ -25,6 +56,7 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
         // Status effect tags
         if (other.gameObject.tag == "SlowEffect")
         {
+            Debug.Log("Hey");
             ToggleSlow();
         } else if (other.gameObject.tag == "FreezeEffect")
         {
@@ -48,11 +80,6 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
     /// Called by OnTriggerEnter2D in base class
     /// </summary>
     protected abstract void ToggleFreeze();
-
-    /// <summary>
-    /// Reset position when enemyship is out of bounds or any other reason.
-    /// </summary>
-    protected abstract void ResetPosition();
 
     public abstract void OnEnable();
 

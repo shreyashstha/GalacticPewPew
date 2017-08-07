@@ -163,8 +163,8 @@ MonoBehaviour:
   barrel:
   - {fileID: 4171288113420238}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 1
-  chanceToShoot: 100
+  attackSpeed: 1.5
+  chanceToShoot: 90
 --- !u!114 &114502485576757324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,7 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be9b954fc25f44fa2c7ead950a273d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speedX: 3
+  speedY: 0.5
 --- !u!114 &114860258647233134
 MonoBehaviour:
   m_ObjectHideFlags: 1

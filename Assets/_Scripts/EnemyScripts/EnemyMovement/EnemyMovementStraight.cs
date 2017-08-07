@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemyMovementStraight : EnemyMovement {
 
     [SerializeField]
-    private float speed = 0.0f;
+    private float speedX = 0.0f;
+    [SerializeField]
+    private float speedY = 0.0f;
     private Vector3 startPosition;
     private bool moveLeft = true;
     private float slowDuration = 5.0f;
@@ -23,14 +25,9 @@ public class EnemyMovementStraight : EnemyMovement {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+        base.Update();
         Move();
-
-        // Reset Enemy in the Formation
-        if (Mathf.Abs(transform.position.x) > 15f)
-        {
-            ResetPosition();
-        }
 	}
 
     //*********** EnemyMovement Implementation **********
@@ -38,37 +35,32 @@ public class EnemyMovementStraight : EnemyMovement {
     {
         if (moveLeft)
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * speedX * Time.deltaTime);
+            transform.Translate(Vector2.down * speedY * Time.deltaTime);
         } else
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speedX * Time.deltaTime);
+            transform.Translate(Vector2.down * speedY * Time.deltaTime);
         }
     }
 
     protected override void ToggleSlow()
     {
-        
+        StartCoroutine(ToggleSlowCoroutine());
     }
 
     IEnumerator ToggleSlowCoroutine()
     {
-        speed = speed / 2;
+        speedX = speedX / 2;
+        speedY = speedY / 2;
         yield return new WaitForSeconds(slowDuration);
-        speed = speed * 2;
+        speedX = speedX * 2;
+        speedY = speedY * 2;
     }
 
     protected override void ToggleFreeze()
     {
         //throw new NotImplementedException();
-    }
-
-    protected override void ResetPosition()
-    {
-        Vector3 newPos = this.transform.position;
-        float newY = newPos.y - 1f;
-        newPos.y = newY;
-        moveLeft = !moveLeft;
-        this.transform.position = newPos;
     }
 
     public override void OnEnable()

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9c22ca0995d86534cb6208edef8cc5d9
-timeCreated: 1499910948
+timeCreated: 1502058476
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -96,25 +96,25 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_0
+      name: Untitled_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 192
-        height: 16
+        x: 176
+        y: 32
+        width: 16
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Untitled_1
+      name: Untitled_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 69
         y: 32
-        width: 192
+        width: 65
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}

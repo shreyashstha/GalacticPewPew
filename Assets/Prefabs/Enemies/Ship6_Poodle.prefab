@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 61134683343909184}
   - component: {fileID: 114480819783971124}
   - component: {fileID: 114728100127844806}
+  - component: {fileID: 114888368804022794}
   m_Layer: 8
   m_Name: Ship6_Poodle
   m_TagString: Enemy
@@ -207,6 +208,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114888368804022794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1340526919627946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1f424a959e8fc4083376c5f8aa1bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bezierPoints:
+  - {x: 0, y: 3, z: 0}
+  - {x: 7, y: 8, z: 0}
+  - {x: 7, y: -2, z: 0}
+  - {x: 0, y: 3, z: 0}
+  - {x: 0, y: 3, z: 0}
+  - {x: -7, y: 8, z: 0}
+  - {x: -7, y: -2, z: 0}
+  - {x: 0, y: 3, z: 0}
+  curves: 2
+  steps: 200
 --- !u!212 &212146713529030730
 SpriteRenderer:
   m_ObjectHideFlags: 1

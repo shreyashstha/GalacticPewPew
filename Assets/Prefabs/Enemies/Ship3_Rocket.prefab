@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 114470641579503650}
   - component: {fileID: 114943732380974386}
   - component: {fileID: 114449084083918034}
+  - component: {fileID: 114172345130866588}
+  - component: {fileID: 114632566847939478}
   m_Layer: 8
   m_Name: Ship3_Rocket
   m_TagString: Enemy
@@ -137,6 +139,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114172345130866588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330561093318496}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1f424a959e8fc4083376c5f8aa1bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bezierPoints: []
+  curves: 0
+  steps: 0
 --- !u!114 &114449084083918034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,6 +177,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   score: 10
+--- !u!114 &114632566847939478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330561093318496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.5
+  frequency: 1
+  speed: 1.5
 --- !u!114 &114943732380974386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,7 +206,7 @@ MonoBehaviour:
   - {fileID: 4099675381339128}
   projectile: {fileID: 1234486391598050, guid: 07a53d5df11e77b46b3a6a8ee7a07860, type: 2}
   attackSpeed: 2.75
-  chanceToShoot: 80
+  chanceToShoot: 100
 --- !u!212 &212515507490440978
 SpriteRenderer:
   m_ObjectHideFlags: 1

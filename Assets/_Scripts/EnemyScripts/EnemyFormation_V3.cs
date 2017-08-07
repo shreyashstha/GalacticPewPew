@@ -7,13 +7,15 @@ public class EnemyFormation_V3 : MonoBehaviour {
 
     //*****Public variables*****
     //Variables for enemies to spawn
-    public GameObject[] enemies;            //List of spawnable enemy gameobjects
-    public Vector3 spawnPoint;
-    public int spawnCount = 0;
-    public float spawnInterval = 0.0f;
+    public GameObject[] enemies;            //List of spawnable enemy gameobjects.
+    public Vector3 spawnPoint;              //Position to spawn enemies.
+    public int spawnCount = 0;              //Number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
+    public float initialDelay = 0.0f;        //Time after which this formation is enabled. (Should we change to score?)
+    public float formationSpawnInterval = 0.0f;     //Delay between spawning sets of enemies.
+    public float spawnInterval = 0.0f;              //Delay between spawning individual enemies in a formation.
 
     //*****Private variables*****
-    private ObjectPool pool;
+    private ObjectPool pool;        //Object pool reference
 
 
     // Use this for initialization
@@ -28,11 +30,12 @@ public class EnemyFormation_V3 : MonoBehaviour {
     private void InitFormation()
     {
         //Set up object pooling
+        //TODO: Manipulating spawn points
         spawnPoint = this.transform.position;
         pool = gameObject.GetComponent<ObjectPool>();
         pool._OBP_ConstructObjectPool(enemies, 10);
 
-        InvokeRepeating("StartSpawn", 0f, 10f);
+        Invoke("StartSpawn", initialDelay);
     }
     // Update is called once per frame
     void Update () {
@@ -40,7 +43,18 @@ public class EnemyFormation_V3 : MonoBehaviour {
 	}
     void StartSpawn()
     {
-        StartCoroutine("SpawnEnemies");
+        StartCoroutine(SpawnFormationCoroutine());
+    }
+
+    IEnumerator SpawnFormationCoroutine()
+    {
+        while (!GameManager.instance.GameOverBool)
+        {
+            StartCoroutine(SpawnEnemies());
+            yield return new WaitForSeconds(formationSpawnInterval);
+        }
+
+        yield return null;
     }
 
     IEnumerator SpawnEnemies()

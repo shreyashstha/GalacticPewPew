@@ -11,7 +11,7 @@ public class PowerUpDrop : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GameManager.instance.Player.transform;
+        player = GameManager.instance.m_Player.transform;
     }
 	
 	// Update is called once per frame

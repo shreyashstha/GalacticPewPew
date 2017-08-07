@@ -8,34 +8,35 @@ public class GameManager : MonoBehaviour {
 
     //Player
     [SerializeField]
-    private GameObject player;                                      //Player object in the scene
-    private GameObject activePlayer;                                //Current player on the scene
-    public GameObject Player
+    private GameObject player;          //Player Prefab.
+
+    //NOTE: 'm_' short for my.
+    private GameObject m_activePlayer;    //Player GameObject in the scene.
+    public GameObject m_Player            //activePlayer property
     {
         get
         {
-            return activePlayer;
+            return m_activePlayer;
         }
     }
 
-    private PlayerHealth playerHealth;                              //PlayerHealth component of the Player gameobject
+    private PlayerHealth m_playerHealth;      //PlayerHealth component of the Player gameobject
 
-    private PlayerShooter playerShooter;                             //PlayerShooter component of the Player gameobject
-    public PlayerShooter PlayerShooter
+    private PlayerShooter m_playerShooter;    //PlayerShooter component of the Player gameobject
+    public PlayerShooter m_PlayerShooter
     {
         get
         {
-            return playerShooter;
+            return m_playerShooter;
         }
     }
 
     [SerializeField]
-    private Vector2 playerStartPosition = new Vector2(0f,-6.5f);     //Starting position for player
+    private Vector2 m_playerStartPosition = new Vector2(0f,-6.5f);     //Starting position for player
     
     //Score
-    public int score = 0;                                          //Current Player Score
-    // score Property
-    public int Score
+    public int score = 0;       //Current Player Score
+    public int Score            //score Property
     {
         get
         {
@@ -43,8 +44,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool gameOver = false;
-    public bool GameOverBool
+    private bool gameOver = false;  //Boolean true if player is dead. Game is over.
+    public bool GameOverBool        //gameOver property
     {
         get
         {
@@ -52,14 +53,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool paused = false;
+    private bool paused = false;    //TODO: Pause functionality
 
-    //Delegate for those who care about the Score
-    public delegate void ScoreAdded(int score);
-    public ScoreAdded onScoreAdded;
-
-    private PowerUpManager powerUpManager;
-    public PowerUpManager PowerUpManager
+    private PowerUpManager powerUpManager;      //PowerUpManager - has functions to when to spawn powerups.
+    public PowerUpManager PowerUpManager        //PowerUpManager property
     {
         get
         {
@@ -67,9 +64,16 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    //***** Delegates *****
+    //Delegate for those who care about the Score
+    public delegate void ScoreAdded(int score);
+    public ScoreAdded onScoreAdded;
+
     //Delegate for when player takes damage
     public delegate void PlayerTookDamage(float health);
     public PlayerTookDamage onPlayerTookDamage;
+    //***** Delegates *****
+
 
     private void Awake()
     {
@@ -83,26 +87,26 @@ public class GameManager : MonoBehaviour {
             instance = this;
         }
         //Get reference to Player object
-        activePlayer = Instantiate<GameObject>(player, playerStartPosition, Quaternion.identity);
+        m_activePlayer = Instantiate<GameObject>(player, m_playerStartPosition, Quaternion.identity);
         powerUpManager = gameObject.GetComponent<PowerUpManager>();
     }
 
     private void Start()
     {
         this.gameOver = false;
-        playerHealth = activePlayer.gameObject.GetComponent<PlayerHealth>();
+        m_playerHealth = m_activePlayer.gameObject.GetComponent<PlayerHealth>();
         //Subscribe to when Player Takes damage
-        playerHealth.onPlayerTakesDamage += NotifyHealthBarUI;
-        playerShooter = activePlayer.gameObject.GetComponent<PlayerShooter>();
+        m_playerHealth.onPlayerTakesDamage += DelegatePlayerTookDamage;
+        m_playerShooter = m_activePlayer.gameObject.GetComponent<PlayerShooter>();
 
         ResetScore();
     }
 
-    public void NotifyHealthBarUI()
+    public void DelegatePlayerTookDamage()
     {
         if (onPlayerTookDamage != null)
         {
-            onPlayerTookDamage((float)playerHealth.Health / (float)playerHealth.StartHealth);
+            onPlayerTookDamage((float)m_playerHealth.Health / (float)m_playerHealth.StartHealth);
         }
     }
 
@@ -115,7 +119,10 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    private void PauseGame()
+    /// <summary>
+    /// Pauses and Unpauses the game. Controlled by a button in the UI. TODO: Handle showing ui elements here.
+    /// </summary>
+    public void PauseGame()
     {
         if (!paused)
         {
@@ -131,6 +138,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    //DANGER:
     public void GameOver()
     {
         SaveScore();

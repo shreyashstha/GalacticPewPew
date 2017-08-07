@@ -12,6 +12,7 @@ TagManager:
   - Drop
   - AttackSpeed
   - Asteroid
+  - SlowEffect
   layers:
   - Default
   - TransparentFX
