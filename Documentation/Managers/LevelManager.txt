@@ -1,0 +1,10 @@
+Class: LevelManager
+- This class is used by UI buttons to manage scenes
+Extends: MonoBehaviour
+
+Functions:
+public void LoadLevel (string level)
+- SceneManager.LoadScene
+
+public static void LoadGameOver()
+- loades game over scene

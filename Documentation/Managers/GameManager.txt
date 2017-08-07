@@ -1,0 +1,19 @@
+Class: GameManager
+Extends: Monobehaviour
+
+Note: Singleton
+
+Public Static Variables:
+1.	GameManager instance - holds a static reference to itself. Used for Singleton.
+
+private Variables
+1.	GameObject player - reference to the player prefab on the scene.
+2.	LifeManager lifeManager - reference to the attached LifeManager script.
+3.	ScoreManager scoreManager - reference to the attached LifeManager script.
+
+Functions:
+private void Awake() - 
+- checks if only instance
+- gets LifeManager script
+- gets ScoreManager script
+- gets reference to the "Player" gameobject in the scene
