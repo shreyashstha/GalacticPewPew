@@ -30,7 +30,7 @@ public class PeriodicRotationEnemyShooter : EnemyShooter {
         {
             float startAngle = 0 - (arcAngle / 2);
             Quaternion rotation = Quaternion.AngleAxis(startAngle + angle * i, Vector3.forward);
-            Debug.Log(rotation.eulerAngles.x + "  " + rotation.eulerAngles.y + "  " + rotation.eulerAngles.z);
+            //Debug.Log(rotation.eulerAngles.x + "  " + rotation.eulerAngles.y + "  " + rotation.eulerAngles.z);
             InstantiateProjectiles(rotation);
             yield return new WaitForSeconds(intervalBetweenShots);
         }

@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be9b954fc25f44fa2c7ead950a273d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedX: 1.5
+  speedX: 3
   speedY: 0
 --- !u!114 &114798044641095790
 MonoBehaviour:
@@ -219,7 +219,7 @@ MonoBehaviour:
   - {fileID: 4870007264138544}
   - {fileID: 4009701818625972}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 2
+  attackSpeed: 0.6
   chanceToShoot: 90
 --- !u!212 &212297606038352952
 SpriteRenderer:

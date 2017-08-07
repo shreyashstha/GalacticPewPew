@@ -6,6 +6,7 @@ using UnityEngine;
 
 public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject {
 
+
     private bool canMove = true;
 
     /// <summary>

@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   damage: 10
-  amplitude: 2
-  frequency: 6
+  amplitude: 1.25
+  frequency: 3
 --- !u!212 &212795024299062014
 SpriteRenderer:
   m_ObjectHideFlags: 1

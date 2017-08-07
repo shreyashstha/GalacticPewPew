@@ -57,7 +57,7 @@ public class EnemyShooter : MonoBehaviour, IEnemyShooter, IPoolableObject {
             if (spawnObject != null)
             {
                 spawnObject.transform.position = barrel[i].position;
-                spawnObject.transform.rotation = Quaternion.identity;
+                spawnObject.transform.rotation = barrel[i].rotation;
                 spawnObject.SetActive(true);
             }
             else {
