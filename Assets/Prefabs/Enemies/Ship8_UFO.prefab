@@ -174,9 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canRotate: 1
   amplitude: 1.5
   frequency: 1
-  speed: 1
+  speed: 1.25
 --- !u!114 &114437138102597508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +210,7 @@ MonoBehaviour:
   barrel:
   - {fileID: 4590889772727946}
   projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
-  attackSpeed: 4.5
+  attackSpeed: 3.5
   chanceToShoot: 90
   numberOfShots: 3
   intervalBetweenShots: 0.15
@@ -253,3 +254,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

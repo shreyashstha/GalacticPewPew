@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114470641579503650}
   - component: {fileID: 114943732380974386}
   - component: {fileID: 114449084083918034}
-  - component: {fileID: 114172345130866588}
   - component: {fileID: 114632566847939478}
   m_Layer: 8
   m_Name: Ship3_Rocket
@@ -70,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330561093318496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 12.37, z: 0}
+  m_LocalPosition: {x: 6.87, y: 6.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4099675381339128}
@@ -139,20 +138,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114172345130866588
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1330561093318496}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1f424a959e8fc4083376c5f8aa1bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bezierPoints: []
-  curves: 0
-  steps: 0
 --- !u!114 &114449084083918034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,9 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 1
-  frequency: 0.5
-  speed: 1
+  canRotate: 0
+  amplitude: -0.75
+  frequency: 0.4
+  speed: 1.5
+  moveSin: 1
 --- !u!114 &114943732380974386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,7 +192,7 @@ MonoBehaviour:
   barrel:
   - {fileID: 4099675381339128}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 0.4
+  attackSpeed: 1.2
   chanceToShoot: 100
 --- !u!212 &212515507490440978
 SpriteRenderer:
@@ -247,3 +234,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
