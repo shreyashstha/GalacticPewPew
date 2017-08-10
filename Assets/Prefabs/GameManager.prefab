@@ -71,5 +71,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1533536425663708, guid: 0debcc185d7969f46b2f7cc059ed649f, type: 2}
-  playerStartPosition: {x: 0, y: -6.5}
-  score: 0
+  m_playerStartPosition: {x: 0, y: -6}
+  score: 450

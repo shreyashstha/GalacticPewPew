@@ -65,8 +65,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1330561093318496, guid: 1810b62829a048f43a7f996c63c6e978, type: 2}
-  spawnPoint: {x: 0, y: 0, z: 0}
+  spawnPoint:
+  - {x: 1.1440146e-33, y: 0, z: 5.162799}
+  - {x: 1.1440146e-33, y: 0, z: 5.162799}
+  - {x: 1.1440146e-33, y: 0, z: 5.162799}
   spawnCount: 3
-  initialDelay: 90
-  formationSpawnInterval: 25
-  spawnInterval: 3
+  initialDelay: 20
+  formationSpawnInterval: 30
+  formationIntervalReduce: 0.2
+  formationSpawnMin: 16
+  spawnInterval: 2.5
+  enemyIncrementInterval: 0

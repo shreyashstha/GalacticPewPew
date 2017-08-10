@@ -10,19 +10,14 @@ public class EnemyMovementStraight : EnemyMovement {
     private float speedY = 0.0f;
     private Vector3 startPosition;
     private bool moveLeft = true;
-    private float slowDuration = 5.0f;
+    private float slowDuration = 5.0f;  //TODO: This can be a static variable in game manager or something.
     
 
     // Use this for initialization
 	void Start () {
         startPosition = this.transform.position;
-		if (this.transform.position.x > 0)
-        {
-            moveLeft = true;
-        } else if(this.transform.position.x < 0){
-            moveLeft = false;
-        }
-	}
+        moveLeft = InRightQuadrant();
+    }
 	
 	// Update is called once per frame
 	public override void Update () {
@@ -66,14 +61,7 @@ public class EnemyMovementStraight : EnemyMovement {
     public override void OnEnable()
     {
         startPosition = this.transform.position;
-        if (this.transform.position.x > 0)
-        {
-            moveLeft = true;
-        }
-        else if (this.transform.position.x < 0)
-        {
-            moveLeft = false;
-        }
+        moveLeft = InRightQuadrant();
     }
 
     public override void OnDisable()

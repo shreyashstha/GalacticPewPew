@@ -52,13 +52,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f7b371fe5956e428da3bb496733959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDelay: 2
   enemies:
   - {fileID: 1947698546487420, guid: ecc46a61f639fd04da676469de764064, type: 2}
-  spawnPoint: {x: 0, y: 0, z: 0}
-  spawnCount: 3
-  initialDelay: 15
-  formationSpawnInterval: 20
-  spawnInterval: 2.5
+  spawnCount: 5
+  spawnInterval: 1.25
+  enemyIncrementInterval: 0
+  spawnPoints:
+  - {x: -7, y: 8, z: 0}
+  - {x: 7, y: 6, z: 0}
+  - {x: -7, y: 4, z: 0}
 --- !u!114 &114461313496336586
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,10 +13,14 @@ public class EnemyMovementWave : EnemyMovement {
     private float speed = 0.0f;
     private Vector3 startPosition;
     private float angle = 0.0f;
+    private bool moveLeft = true;
+    [SerializeField]
+    private bool moveSin = true;
 
     // Use this for initialization
     void Start () {
         startPosition = this.transform.position;
+        moveLeft = InRightQuadrant();
 	}
 	
 	// Update is called once per frame
@@ -30,12 +34,15 @@ public class EnemyMovementWave : EnemyMovement {
 
     public override void Move()
     {
-        Vector3 newPos = this.transform.position;
-        newPos.x = startPosition.x + (amplitude * Mathf.Sin(angle * frequency));
-        newPos.y = newPos.y - speed * Time.deltaTime;
-        ChangeRotation(newPos);
-        this.transform.position = newPos;
-        angle += Time.deltaTime;
+        if (moveSin)
+        {
+            MoveSin();
+        } else
+        {
+            MoveCos();
+        }
+        
+        
     }
 
     public override void OnDisable()
@@ -47,11 +54,12 @@ public class EnemyMovementWave : EnemyMovement {
     {
         angle = 0f;
         startPosition = this.transform.position;
+        moveLeft = InRightQuadrant();
     }
 
     protected override void ToggleFreeze()
     {
-
+        //TODO: When implementing powerups
     }
 
     protected override void ToggleSlow()
@@ -59,4 +67,61 @@ public class EnemyMovementWave : EnemyMovement {
         
     }
     //*********** EnemyMovement Implementation **********
+
+    private void MoveSin()
+    {
+        Vector3 newPos = this.transform.position;
+        if (moveLeft)
+        {
+            //Calculate new x and y positons.
+            newPos.y = startPosition.y + (amplitude * Mathf.Sin(angle * frequency));
+            newPos.x = newPos.x - speed * Time.deltaTime;
+            //Rotate if possible
+            if (canRotate) ChangeRotation(newPos);
+            //Set new rotation
+            this.transform.position = newPos;
+            //Increase angle for next iteration.
+            angle += Time.deltaTime;
+        }
+        else
+        {
+            //Calculate new x and y positons.
+            newPos.y = startPosition.y + (amplitude * Mathf.Sin(angle * frequency));
+            newPos.x = newPos.x + speed * Time.deltaTime;
+            //Rotate if possible
+            if (canRotate) ChangeRotation(newPos);
+            //Set new rotation
+            this.transform.position = newPos;
+            //Increase angle for next iteration.
+            angle += Time.deltaTime;
+        }
+    }
+    private void MoveCos()
+    {
+        Vector3 newPos = this.transform.position;
+        if (moveLeft)
+        {
+            //Calculate new x and y positons.
+            newPos.y = startPosition.y + (amplitude * Mathf.Cos(angle * frequency));
+            newPos.x = newPos.x - speed * Time.deltaTime;
+            //Rotate if possible
+            if (canRotate) ChangeRotation(newPos);
+            //Set new rotation
+            this.transform.position = newPos;
+            //Increase angle for next iteration.
+            angle += Time.deltaTime;
+        }
+        else
+        {
+            //Calculate new x and y positons.
+            newPos.y = startPosition.y + (amplitude * Mathf.Cos(angle * frequency));
+            newPos.x = newPos.x + speed * Time.deltaTime;
+            //Rotate if possible
+            if (canRotate) ChangeRotation(newPos);
+            //Set new rotation
+            this.transform.position = newPos;
+            //Increase angle for next iteration.
+            angle += Time.deltaTime;
+        }
+    }
 }

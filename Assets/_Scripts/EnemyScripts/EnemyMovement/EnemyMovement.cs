@@ -8,6 +8,14 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
 
 
     private bool canMove = true;
+    [SerializeField]
+    protected bool canRotate = true;
+
+    // Update is called once per frame
+    public virtual void Update()
+    {
+        DisableShipOOB();
+    }
 
     /// <summary>
     /// Function to toggle Movement. A way to stop movement. Useful for effects like freeze
@@ -31,21 +39,35 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
     }
 
     /// <summary>
+    /// Returns true if located in the right quadrant of the game screen, false othewise
+    /// </summary>
+    /// <returns>boolean</returns>
+    protected bool InRightQuadrant()
+    {
+        if (this.transform.position.x > 0)
+        {
+            return true;
+        }
+        else if (this.transform.position.x < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /// <summary>
     /// Disable the Enemy gameobject when out of bounds. This is so that we don't overflood the game with enemies and they are removed when not killed.
     /// </summary>
     private void DisableShipOOB()
     {
         if (transform.position.y < Boundary.MinimumY() - 3f || transform.position.y > Boundary.MaximumY() + 3f
-            || transform.position.x < Boundary.MinimumX() -3f || transform.position.x > Boundary.MaximumX() + 3f)
+            || transform.position.x < Boundary.MinimumX() - 3f || transform.position.x > Boundary.MaximumX() + 3f)
         {
             gameObject.SetActive(false);
         }
-    }
-
-    // Update is called once per frame
-    public virtual void Update()
-    {
-        DisableShipOOB();
     }
 
     /// <summary>
