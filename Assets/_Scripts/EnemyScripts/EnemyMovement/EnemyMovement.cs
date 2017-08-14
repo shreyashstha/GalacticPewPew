@@ -12,7 +12,7 @@ public abstract class EnemyMovement : MonoBehaviour, IMovement, IPoolableObject 
     protected bool canRotate = true;
 
     // Update is called once per frame
-    public virtual void Update()
+    protected virtual void Update()
     {
         DisableShipOOB();
     }

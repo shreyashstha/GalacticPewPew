@@ -20,7 +20,7 @@ public class EnemyMovementBezier : EnemyMovement {
 
     // Use this for initialization
     void Start () {
-        ArraneBezierPoints();
+        ArrangeBezierPoints();
         if (bezierPoints.Length == 0) Debug.Log("I should throw an error");
         bezierPositions = GetBezierPositions();
         this.transform.position = bezierPositions[bezierIndex];
@@ -28,11 +28,11 @@ public class EnemyMovementBezier : EnemyMovement {
 	}
 	
 	// Update is called once per frame
-	public override void Update () {
+	protected override void Update () {
         Move();
 	}
 
-    void ArraneBezierPoints()
+    void ArrangeBezierPoints()
     {
         moveLeft = InRightQuadrant();
         if (!moveLeft)
@@ -82,7 +82,7 @@ public class EnemyMovementBezier : EnemyMovement {
 
     public override void OnEnable()
     {
-        ArraneBezierPoints();
+        ArrangeBezierPoints();
         bezierIndex = 1;
         bezierPositions = GetBezierPositions();
         this.transform.position = bezierPositions[0];

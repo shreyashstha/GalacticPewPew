@@ -26,7 +26,8 @@ GameObject:
   - component: {fileID: 61415746379327364}
   - component: {fileID: 114031446120954562}
   - component: {fileID: 114325103067355456}
-  - component: {fileID: 114212363786358980}
+  - component: {fileID: 114549653730841176}
+  - component: {fileID: 114323543371861326}
   m_Layer: 8
   m_Name: Ship5_Knuckle
   m_TagString: Enemy
@@ -68,8 +69,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080777729249818}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16, y: 13.02, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4815422097622072}
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 100
   score: 10
---- !u!114 &114212363786358980
+--- !u!114 &114323543371861326
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -159,17 +160,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080777729249818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1f424a959e8fc4083376c5f8aa1bda, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ac8b4fa053f524eb48dec51ee6761d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canRotate: 0
-  bezierPoints:
-  - {x: 6, y: 11, z: 0}
-  - {x: 6, y: 5, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: -7, y: -1, z: 0}
-  curves: 1
-  steps: 200
+  points:
+  - {x: -5, y: 11, z: 0}
+  - {x: -5.999999, y: 5, z: 0}
+  - {x: -4, y: 1.5999999, z: 0}
+  - {x: -0, y: 2, z: 0}
+  - {x: 4, y: 2.4, z: 0}
+  - {x: 3.5, y: 8.5, z: 0}
+  - {x: -0, y: 7, z: 0}
+  - {x: -3.5, y: 5.5, z: 0}
+  - {x: 0.13754702, y: -2.1175091, z: 0}
+  - {x: 7, y: 0, z: 0}
+  modes: 0000000002000000020000000000000000000000000000000000000000000000000000000000000000000000
+  loop: 0
 --- !u!114 &114325103067355456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,10 +190,10 @@ MonoBehaviour:
   barrel:
   - {fileID: 4815422097622072}
   projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
-  attackSpeed: 1.7
+  attackSpeed: 1.6
   chanceToShoot: 100
   numberOfShots: 2
-  intervalBetweenShots: 0.3
+  intervalBetweenShots: 0.2
 --- !u!114 &114346776561250944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,6 +205,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114549653730841176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1080777729249818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c4a1f3e0070246b28bc94f7991724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 0
+  duration: 8
 --- !u!212 &212718881683841378
 SpriteRenderer:
   m_ObjectHideFlags: 1

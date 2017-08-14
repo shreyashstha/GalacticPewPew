@@ -252,4 +252,12 @@ public class BezierSpline : MonoBehaviour
         Array.Resize(ref modes, points.Length - 1);
         EnforceMode(0);
     }
+
+    public void FlipPoints()
+    {
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = Vector3.Scale(points[i], new Vector3(-1f, 1f, 1f));
+        }
+    }
 }

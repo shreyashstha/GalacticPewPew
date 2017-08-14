@@ -24,7 +24,7 @@ public class EnemyMovementWave : EnemyMovement {
 	}
 	
 	// Update is called once per frame
-	public override void Update ()
+	protected override void Update ()
     {
         base.Update();
         Move();
