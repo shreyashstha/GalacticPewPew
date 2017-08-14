@@ -77,7 +77,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
             if (whichSpawnStyle < 5)
             {
                 Debug.Log("5% Spawn all at once");
-                int count = Random.Range(2, 4);
+                int count = Random.Range(2, Mathf.Clamp(4, 2, spawnPoints.Length - 1));
                
                 for (int i = 0; i < count; i++)
                 {

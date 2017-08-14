@@ -18,7 +18,8 @@ public class EnemyMovementBezierSpline : EnemyMovement {
         splineGOCopy = Instantiate(splineGO);
         spline = splineGOCopy.GetComponent<BezierSpline>();
         Debug.Log(gameObject.GetInstanceID());
-	}
+        ArrangeBezierPoints();
+    }
 	
 	// Update is called once per frame
 	protected override void Update () {
@@ -58,6 +59,8 @@ public class EnemyMovementBezierSpline : EnemyMovement {
 
     public override void OnEnable()
     {
+        splineGOCopy = Instantiate(splineGO);
+        spline = splineGOCopy.GetComponent<BezierSpline>();
         progress = 0f;
         ArrangeBezierPoints();
     }
