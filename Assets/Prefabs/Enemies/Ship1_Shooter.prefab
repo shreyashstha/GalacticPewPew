@@ -163,7 +163,7 @@ MonoBehaviour:
   barrel:
   - {fileID: 4171288113420238}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 1.2
+  attackSpeed: 0.7
   chanceToShoot: 95
 --- !u!114 &114502485576757324
 MonoBehaviour:
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 0
-  speedX: 1.4
+  speedX: 2
   speedY: 0.3
 --- !u!114 &114860258647233134
 MonoBehaviour:

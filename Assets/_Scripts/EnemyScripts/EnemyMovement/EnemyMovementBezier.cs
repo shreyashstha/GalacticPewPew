@@ -13,12 +13,14 @@ public class EnemyMovementBezier : EnemyMovement {
     public Vector3[] bezierPoints;
     public int curves = 0;
     public int steps = 0;
+    private bool moveLeft = true;
 
     private Vector3[] bezierPositions;
     private int bezierIndex = 0;
 
     // Use this for initialization
     void Start () {
+        ArraneBezierPoints();
         if (bezierPoints.Length == 0) Debug.Log("I should throw an error");
         bezierPositions = GetBezierPositions();
         this.transform.position = bezierPositions[bezierIndex];
@@ -29,6 +31,18 @@ public class EnemyMovementBezier : EnemyMovement {
 	public override void Update () {
         Move();
 	}
+
+    void ArraneBezierPoints()
+    {
+        moveLeft = InRightQuadrant();
+        if (!moveLeft)
+        {
+            for (int i = 0; i < bezierPoints.Length; i++)
+            {
+                bezierPoints[i] = Vector3.Scale(bezierPoints[i], new Vector3(-1f, 1f, 1f));
+            }
+        }
+    }
 
     Vector3[] GetBezierPositions()
     {
@@ -42,7 +56,6 @@ public class EnemyMovementBezier : EnemyMovement {
             Array.Copy(positions, 0, returnArray, (i/4) * steps, positions.Length);
         }
         return returnArray;
-
     }
 
     //*********** EnemyMovement Implementation **********
@@ -50,7 +63,10 @@ public class EnemyMovementBezier : EnemyMovement {
     {
 
         Vector3 newPos = bezierPositions[bezierIndex];
-        ChangeRotation(newPos);
+        if (canRotate)
+        {
+            ChangeRotation(newPos);
+        }
         this.transform.position = newPos;
         bezierIndex++;
         if (bezierIndex == bezierPositions.Length)
@@ -66,6 +82,7 @@ public class EnemyMovementBezier : EnemyMovement {
 
     public override void OnEnable()
     {
+        ArraneBezierPoints();
         bezierIndex = 1;
         bezierPositions = GetBezierPositions();
         this.transform.position = bezierPositions[0];

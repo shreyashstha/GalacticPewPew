@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 0
-  amplitude: -0.75
-  frequency: 0.4
-  speed: 1.5
+  amplitude: -0.65
+  frequency: 2.5
+  speed: 1.8
   moveSin: 1
 --- !u!114 &114943732380974386
 MonoBehaviour:

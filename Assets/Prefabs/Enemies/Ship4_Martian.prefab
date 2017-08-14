@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114978726373448128}
   - component: {fileID: 114311946651327682}
   - component: {fileID: 114226964417075604}
-  - component: {fileID: 114916552940909236}
+  - component: {fileID: 114779093749617476}
   m_Layer: 8
   m_Name: Ship4_Martian
   m_TagString: Enemy
@@ -70,26 +70,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997038449705922}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -0.5999999, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.30070576, w: 0.953717}
+  m_LocalPosition: {x: 0, y: -0.6000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4523388749422184}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35}
 --- !u!4 &4507018611398558
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630885937552264}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.30070576, w: 0.953717}
+  m_LocalPosition: {x: 0, y: -0.6000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4523388749422184}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -35}
 --- !u!4 &4523388749422184
 Transform:
   m_ObjectHideFlags: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
   - {fileID: 4507018611398558}
   - {fileID: 4045313312642018}
   projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 2
+  attackSpeed: 1.1
   chanceToShoot: 85
 --- !u!114 &114311946651327682
 MonoBehaviour:
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114916552940909236
+--- !u!114 &114779093749617476
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -203,15 +203,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1822144744622780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a494b9c33280942885094c473101f9, type: 3}
+  m_Script: {fileID: 11500000, guid: e7a59a5dd3940c043a08ce374db4979c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 0
-  moveSpeed: 2
-  xPositionMax: 5
-  xPositionMin: 1
-  yPositionMax: 6
-  yPositionMin: 3
+  moveSpeed: 12
 --- !u!114 &114978726373448128
 MonoBehaviour:
   m_ObjectHideFlags: 1

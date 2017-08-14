@@ -999,11 +999,6 @@ Prefab:
       propertyPath: m_Name
       value: Formation
       objectReference: {fileID: 0}
-    - target: {fileID: 114251263279221922, guid: 3895b02634a6f3c40a0e14265e12f44b,
-        type: 2}
-      propertyPath: formationSpawnInterval
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3895b02634a6f3c40a0e14265e12f44b, type: 2}
   m_IsPrefabParent: 0
@@ -4581,7 +4576,7 @@ MonoBehaviour:
   currentFormation: 1
   enemies:
   - {fileID: 1518973067741386, guid: 47ad0c51d17e5514f9e5b3bce90d75a7, type: 2}
-  - {fileID: 1977878655033800, guid: 96301defa2beb9e499763caceb2527a3, type: 2}
+  - {fileID: 0}
   - {fileID: 1947698546487420, guid: ecc46a61f639fd04da676469de764064, type: 2}
   - {fileID: 1330561093318496, guid: 1810b62829a048f43a7f996c63c6e978, type: 2}
   - {fileID: 1036656772931802, guid: 367e81c8437aede41b774b05d6edd9cd, type: 2}
@@ -4621,7 +4616,7 @@ MonoBehaviour:
   currentFormation: 1
   enemies:
   - {fileID: 1518973067741386, guid: 47ad0c51d17e5514f9e5b3bce90d75a7, type: 2}
-  - {fileID: 1977878655033800, guid: 96301defa2beb9e499763caceb2527a3, type: 2}
+  - {fileID: 0}
   - {fileID: 1947698546487420, guid: ecc46a61f639fd04da676469de764064, type: 2}
   - {fileID: 1330561093318496, guid: 1810b62829a048f43a7f996c63c6e978, type: 2}
   - {fileID: 1036656772931802, guid: 367e81c8437aede41b774b05d6edd9cd, type: 2}

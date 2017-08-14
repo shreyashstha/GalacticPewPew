@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 50458419176323662}
   - component: {fileID: 61490436350633948}
   - component: {fileID: 114273680713240912}
-  - component: {fileID: 114984385843452414}
   - component: {fileID: 114437138102597508}
   - component: {fileID: 114435699330325314}
   m_Layer: 8
@@ -174,10 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canRotate: 1
+  canRotate: 0
   amplitude: 1.5
   frequency: 1
   speed: 1.25
+  moveSin: 1
 --- !u!114 &114437138102597508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,27 +193,9 @@ MonoBehaviour:
   projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
   attackSpeed: 3
   chanceToShoot: 100
-  numberOfShots: 3
+  numberOfShots: 2
   intervalBetweenShots: 0.2
-  arcAngle: 30
---- !u!114 &114984385843452414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1412645146711458}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f709dd2a87566d4ea132b121e64af3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrel:
-  - {fileID: 4590889772727946}
-  projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
-  attackSpeed: 3.5
-  chanceToShoot: 90
-  numberOfShots: 3
-  intervalBetweenShots: 0.15
+  arcAngle: 10
 --- !u!212 &212473140261885932
 SpriteRenderer:
   m_ObjectHideFlags: 1

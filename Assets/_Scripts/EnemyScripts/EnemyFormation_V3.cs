@@ -32,6 +32,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        maxEnemyIndex = Mathf.Clamp(maxEnemyIndex, 1, enemies.Length);
         InitFormation();
 	}
 

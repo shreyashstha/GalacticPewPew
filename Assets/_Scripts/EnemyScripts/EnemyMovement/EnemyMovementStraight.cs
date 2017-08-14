@@ -55,7 +55,7 @@ public class EnemyMovementStraight : EnemyMovement {
 
     protected override void ToggleFreeze()
     {
-        //throw new NotImplementedException();
+        
     }
 
     public override void OnEnable()
@@ -66,7 +66,7 @@ public class EnemyMovementStraight : EnemyMovement {
 
     public override void OnDisable()
     {
-        //throw new NotImplementedException();
+    
     }
     //*********** EnemyMovement Implementation **********
 }
