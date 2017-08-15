@@ -85,15 +85,15 @@ public class EnemyFormation_V3 : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(formationSpawnInterval);
             }
-            else if (whichSpawnStyle >= 5 && whichSpawnStyle < 25)
+            else if (whichSpawnStyle >= 5 && whichSpawnStyle < 15)
             {
-                Debug.Log("20% Spawn at smaller intervals");
+                Debug.Log("10% Spawn at smaller intervals");
                 int count = 3 + ((int)Time.time / 60);
                 for (int i = 0; i < count; i++)
                 {
                     int index = Random.Range(0, maxEnemyIndex);
                     StartCoroutine(SpawnEnemiesCoroutine(index, spawnPoints[Random.Range(0, spawnPoints.Length)], spawnCount));
-                    yield return new WaitForSeconds(3.5f);
+                    yield return new WaitForSeconds(5f);
                 }
                 yield return new WaitForSeconds(formationSpawnInterval);
             }

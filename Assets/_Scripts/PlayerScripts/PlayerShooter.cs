@@ -40,7 +40,7 @@ public class PlayerShooter : MonoBehaviour {
 	void Update () {
         // Add time to counter
         AdvanceCounter();
-        Shoot();
+        //Shoot();
         // Check if player has touched screen then shoot  
         if (Input.touchCount == 1) Shoot();
 	}

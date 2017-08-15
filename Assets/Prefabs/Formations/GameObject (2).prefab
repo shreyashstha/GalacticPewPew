@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialDelay: 3
-  formationSpawnInterval: 13
+  formationSpawnInterval: 11
   enemySpawnInterval: 1.25
   enemies:
   - {fileID: 1518973067741386, guid: 47ad0c51d17e5514f9e5b3bce90d75a7, type: 2}
@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 1822144744622780, guid: 8333f87f9ab577143a42b877ee21b880, type: 2}
   - {fileID: 1080777729249818, guid: 96301defa2beb9e499763caceb2527a3, type: 2}
   - {fileID: 1412645146711458, guid: cbb6c828c25e3a44db60f03fec629db8, type: 2}
+  - {fileID: 1340526919627946, guid: fcc080879f26e4d479c068cd7085b7c4, type: 2}
   numberOfSpawns: 7
   enemyIncrementInterval: 30
   spawnPoints:
