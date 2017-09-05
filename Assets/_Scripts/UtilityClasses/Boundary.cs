@@ -32,4 +32,16 @@ public static class Boundary{
     {
         return topRight.y;
     }
+
+    public static bool OutOfBoundary(Vector3 position, float pad = 0f)
+    {
+        if (position.y + pad < MinimumY() || position.y - pad > MaximumY()
+            || position.x + pad < MinimumX() || position.x - pad > MaximumX())
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
 }

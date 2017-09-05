@@ -53,15 +53,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialDelay: 2
-  formationSpawnInterval: 5
+  formationSpawnInterval: 8
   enemySpawnInterval: 1.25
+  enemyIncrementInterval: 30
   enemies:
-  - {fileID: 1080777729249818, guid: 96301defa2beb9e499763caceb2527a3, type: 2}
+  - {fileID: 1354134208566692, guid: a1867022b8010fc4aa73ef8a02024956, type: 2}
+  - {fileID: 1340526919627946, guid: fcc080879f26e4d479c068cd7085b7c4, type: 2}
   numberOfSpawns: 5
-  enemyIncrementInterval: 0
+  numFormationBeforeHorde: 2
   spawnPoints:
-  - {x: 7, y: 5, z: 0}
-  - {x: -7, y: 5, z: 0}
+  - {x: 8, y: 5, z: 0}
+  - {x: -8, y: 5, z: 0}
+  leftPoints:
+  - {x: -8, y: 5, z: 0}
+  rightPoints:
+  - {x: 8, y: 7, z: 0}
 --- !u!114 &114461313496336586
 MonoBehaviour:
   m_ObjectHideFlags: 1

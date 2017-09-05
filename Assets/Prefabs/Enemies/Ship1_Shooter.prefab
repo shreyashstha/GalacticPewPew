@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel:
   - {fileID: 4171288113420238}
-  projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
+  projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
   attackSpeed: 0.7
   chanceToShoot: 95
 --- !u!114 &114502485576757324
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 0
-  speedX: 2
-  speedY: 0.3
+  speedX: 2.5
+  speedY: 0.4
 --- !u!114 &114860258647233134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!212 &212403495727618830
 SpriteRenderer:
@@ -222,7 +224,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1375621707
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 278b9bbb84e974b488a6b8a116d07772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

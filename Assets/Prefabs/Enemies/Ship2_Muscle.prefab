@@ -204,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!114 &114872988949160622
 MonoBehaviour:
@@ -219,9 +221,9 @@ MonoBehaviour:
   barrel:
   - {fileID: 4870007264138544}
   - {fileID: 4009701818625972}
-  projectile: {fileID: 1669329906436880, guid: da44271607e9a9741b611b0861dce1ba, type: 2}
-  attackSpeed: 1.8
-  chanceToShoot: 95
+  projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
+  attackSpeed: 1.6
+  chanceToShoot: 80
 --- !u!212 &212297606038352952
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,12 +6,20 @@ public class GameManager : MonoBehaviour {
     //*****Singleton*****
     public static GameManager instance = null;                      //Singleton instance
 
-    //Player
     [SerializeField]
     private GameObject player;          //Player Prefab.
 
     //NOTE: 'm_' short for my.
     private GameObject m_activePlayer;    //Player GameObject in the scene.
+    private PlayerHealth m_playerHealth;      //PlayerHealth component of the Player gameobject
+    private PlayerScript m_playerScript;      //PlayerScript component of the Player gameobject
+    private PowerUpManager powerUpManager;    //PowerUpManager - has functions to when to spawn powerups.
+    [SerializeField]
+    private Vector2 m_playerStartPosition = new Vector2(0f,-7.5f);     //Starting position for player
+    private bool gameOver = false;            //Boolean true if player is dead. Game is over.
+    private bool paused = false;    //TODO: Pause functionality
+    private int score = 0;      //Current Player Score
+
     public GameObject m_Player            //activePlayer property
     {
         get
@@ -20,22 +28,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private PlayerHealth m_playerHealth;      //PlayerHealth component of the Player gameobject
-
-    private PlayerShooter m_playerShooter;    //PlayerShooter component of the Player gameobject
-    public PlayerShooter m_PlayerShooter
-    {
-        get
-        {
-            return m_playerShooter;
-        }
-    }
-
-    [SerializeField]
-    private Vector2 m_playerStartPosition = new Vector2(0f,-6.5f);     //Starting position for player
-    
-    //Score
-    public int score = 0;       //Current Player Score
     public int Score            //score Property
     {
         get
@@ -44,7 +36,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool gameOver = false;  //Boolean true if player is dead. Game is over.
     public bool GameOverBool        //gameOver property
     {
         get
@@ -53,14 +44,27 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool paused = false;    //TODO: Pause functionality
+    public bool Paused          //Paused property
+    {
+        get
+        {
+            return paused;
+        }
+    }
 
-    private PowerUpManager powerUpManager;      //PowerUpManager - has functions to when to spawn powerups.
     public PowerUpManager PowerUpManager        //PowerUpManager property
     {
         get
         {
             return powerUpManager;
+        }
+    }
+
+    public PlayerScript PlayerScript
+    {
+        get
+        {
+            return m_playerScript;
         }
     }
 
@@ -72,6 +76,14 @@ public class GameManager : MonoBehaviour {
     //Delegate for when player takes damage
     public delegate void PlayerTookDamage(float health);
     public PlayerTookDamage onPlayerTookDamage;
+
+    //Delegate for when Power up changes
+    public delegate void PowerUpChange(Sprite sprite);
+    public PowerUpChange onPowerUpChange;
+
+    //Delegate for when Power Up button is pushed
+    public delegate void ExecutePowerUp();
+    public ExecutePowerUp onExecutePowerUp;
     //***** Delegates *****
 
 
@@ -86,7 +98,7 @@ public class GameManager : MonoBehaviour {
         {
             instance = this;
         }
-        //Get reference to Player object
+        //Instantiate Player object
         m_activePlayer = Instantiate<GameObject>(player, m_playerStartPosition, Quaternion.identity);
         powerUpManager = gameObject.GetComponent<PowerUpManager>();
     }
@@ -95,19 +107,13 @@ public class GameManager : MonoBehaviour {
     {
         this.gameOver = false;
         m_playerHealth = m_activePlayer.gameObject.GetComponent<PlayerHealth>();
+        m_playerScript = m_activePlayer.gameObject.GetComponent<PlayerScript>();
+
         //Subscribe to when Player Takes damage
         m_playerHealth.onPlayerTakesDamage += DelegatePlayerTookDamage;
-        m_playerShooter = m_activePlayer.gameObject.GetComponent<PlayerShooter>();
 
+        //Reset the score at the start of the game
         ResetScore();
-    }
-
-    public void DelegatePlayerTookDamage()
-    {
-        if (onPlayerTookDamage != null)
-        {
-            onPlayerTookDamage((float)m_playerHealth.Health / (float)m_playerHealth.StartHealth);
-        }
     }
 
     private void Update()
@@ -116,11 +122,47 @@ public class GameManager : MonoBehaviour {
         {
             PauseGame();
         }
-        
+
+    }
+
+    /// <summary>
+    /// Function that calls the delegate onPlayerTookDamage
+    /// </summary>
+    public void DelegatePlayerTookDamage()
+    {
+        if (onPlayerTookDamage != null)
+        {
+            onPlayerTookDamage((float)m_playerHealth.Health / (float)m_playerHealth.StartHealth);
+        }
+    }
+
+    /// <summary>
+    /// Function that calls the delegate onPowerUpChange
+    /// </summary>
+    /// <param name="sprite"></param>
+    public void DelegatePowerUpChange(Sprite sprite)
+    {
+        if (onPowerUpChange != null)
+        {
+            onPowerUpChange(sprite);
+        }
+    }
+
+    /// <summary>
+    /// Function that calls the delegate onExecutePowerUp
+    /// </summary>
+    public void DelegateExecutePowerUp()
+    {
+        if (onExecutePowerUp != null)
+        {
+            onExecutePowerUp();
+        }
+        DelegatePowerUpChange(null);
     }
 
     /// <summary>
     /// Pauses and Unpauses the game. Controlled by a button in the UI. TODO: Handle showing ui elements here.
+    /// This is called by PauseButton
     /// </summary>
     public void PauseGame()
     {
@@ -128,22 +170,50 @@ public class GameManager : MonoBehaviour {
         {
             paused = true;
             Time.timeScale = 0.0f;
-            Debug.Log("Paused");
         }
         else
         {
             paused = false;
             Time.timeScale = 1.0f;
-            Debug.Log("Unpaused");
         }
     }
 
-    //DANGER:
-    public void GameOver()
+    /// <summary>
+    /// Saves the score and loads the GameOver scene
+    /// This is only called by Player health script when health is 0
+    /// </summary>
+    public void SetGameOver()
     {
         SaveScore();
         gameOver = true;
         LevelManager.LoadGameOver(); // Is this a good?
+    }
+
+    //Calls the GarbageCollectCoroutine
+    public void GarbageCollectPooledObjects(List<PooledObject> list)
+    {
+        if (GameManager.instance != null)
+        {
+            StartCoroutine(GarbageCollectCoroutine(list));
+        }
+    }
+
+    /// <summary>
+    /// Destroys each game object in the PooledObjects
+    /// </summary>
+    /// <param name="list">List of PooledObject from some object pool that has been destroyed</param>
+    /// <returns></returns>
+    IEnumerator GarbageCollectCoroutine(List<PooledObject> list)
+    {
+        yield return new WaitForSeconds(10f);
+
+        foreach (PooledObject pool in list)
+        {
+            foreach (GameObject go in pool.pool)
+            {
+                Destroy(go);
+            }
+        }
     }
 
     /******************************   Score Manager Section   ******************************/
@@ -187,22 +257,5 @@ public class GameManager : MonoBehaviour {
     }
 
     /******************************   END Score Manager Section END   ******************************/
-
-    /******************************   START ObjectPool Helper **************************************/
-    private IEnumerator DestroyGarbageGameObjects(List<GameObject> deleteList, float time)
-    {
-        yield return new WaitForSeconds(time);
-        foreach (GameObject obj in deleteList)
-        {
-            Destroy(obj);
-        }
-    }
-
-    public void CleanList(List<GameObject> list)
-    {
-        if (!gameOver)
-        {
-            StartCoroutine(DestroyGarbageGameObjects(list, 2.0f));
-        }
-    }
 }
+ 

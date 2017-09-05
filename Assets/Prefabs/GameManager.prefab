@@ -52,13 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d16afcb50d05d845801ee5556b2b4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropChance: 5
-  spawnMode: 0
-  spawnInterval: 0
   powerUps:
-  - {fileID: 1371338345371094, guid: d4dcd8c9375773e4ab66379677bd61db, type: 2}
-  - {fileID: 1406746966237036, guid: 175bd989f50b4004588d01ed3346b391, type: 2}
-  - {fileID: 1162505085838954, guid: 6388f8082b98ea14cbc242eca3956455, type: 2}
+  - {fileID: 1262369569991254, guid: daaa5c0bc589ab746a166ae199b31f42, type: 2}
+  - {fileID: 1178612099764022, guid: 6c86ebefef7b0e043b6eefda08104ceb, type: 2}
+  - {fileID: 1206774579446570, guid: fb4ee9960fa5ffd44aa811bfc18385bd, type: 2}
+  - {fileID: 1639671293172258, guid: 4587bc09036431a4c8d8b75f1caad6bf, type: 2}
 --- !u!114 &114984009769728998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +68,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce4fab0520c50544a0258994f4072f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1533536425663708, guid: 0debcc185d7969f46b2f7cc059ed649f, type: 2}
-  m_playerStartPosition: {x: 0, y: -6}
-  score: 450
+  player: {fileID: 1929012296460070, guid: 749718534eeaa5f4ba96458d8e8957d0, type: 2}
+  m_playerStartPosition: {x: 0, y: -8.5}

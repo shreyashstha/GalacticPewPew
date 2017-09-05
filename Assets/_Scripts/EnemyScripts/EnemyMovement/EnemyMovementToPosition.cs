@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EnemyMovementToPosition : EnemyMovement {
 
-    Vector3 startPosition, endPosition;
-    public float moveSpeed = 0.0f;
+    public float initialSpeed = 0.0f;
+    public bool moveAfterPosition = false;
+    public float postSpeed = 0.0f;
+    public float movementLength = 0.0f;
+
     private bool moveLeft = true;
+    private bool inPosition = false;
+    Vector3 startPosition, endPosition;
 
     // Use this for initialization
     void Start ()
@@ -19,6 +24,7 @@ public class EnemyMovementToPosition : EnemyMovement {
 	protected override void Update ()
     {
         Move();
+
     }
 
     void InitMovement()
@@ -39,8 +45,37 @@ public class EnemyMovementToPosition : EnemyMovement {
     //*********** EnemyMovement Implementation **********
     public override void Move()
     {
-        float step = moveSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
+        if (!inPosition)
+        {
+            float step = initialSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
+
+            if (transform.position == endPosition) inPosition = true;
+        }
+        else if (moveAfterPosition)
+        {
+            inPosition = true;
+            Vector3 newPos = this.transform.position;
+            float leftBoundary = endPosition.x - (movementLength * 0.5f);
+            float rightBoundary = endPosition.x + (movementLength * 0.5f);
+
+            //Find new x position between left and right boundary using speed time time
+            if (moveLeft)
+            {
+                float xpos = Mathf.Clamp(newPos.x + postSpeed * Time.deltaTime, leftBoundary, rightBoundary);
+                newPos.x = xpos;
+                this.transform.position = newPos;
+                if (xpos >= rightBoundary) moveLeft = false;
+            }
+            else
+            {
+                float xpos = Mathf.Clamp(newPos.x - postSpeed * Time.deltaTime, leftBoundary, rightBoundary);
+                newPos.x = xpos;
+                this.transform.position = newPos;
+                if (xpos <= leftBoundary) moveLeft = true;
+
+            }
+        }
     }
 
     public override void OnDisable()
@@ -51,6 +86,7 @@ public class EnemyMovementToPosition : EnemyMovement {
     public override void OnEnable()
     {
         moveLeft = InRightQuadrant();
+        inPosition = false;
         InitMovement();
     }
 

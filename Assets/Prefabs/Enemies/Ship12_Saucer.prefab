@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61021594307061924}
   - component: {fileID: 114773470615233980}
   - component: {fileID: 114780819882851268}
+  - component: {fileID: 114657454594343778}
   m_Layer: 8
   m_Name: Ship12_Saucer
   m_TagString: Enemy
@@ -148,6 +149,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114657454594343778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020564111352930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d79aca1b7075540935d0f5ba72d2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 0
+  amplitude: 0.27
+  frequency: 1.3
+  speed: 1.3
+  moveSin: 0
 --- !u!114 &114773470615233980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!114 &114780819882851268
 MonoBehaviour:
@@ -174,8 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel:
   - {fileID: 4107920095849602}
-  projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 2.5
+  projectile: {fileID: 1218911606210580, guid: 9e14b02bcba8d4444b17ab26bc9c8aee, type: 2}
+  attackSpeed: 0.9
   chanceToShoot: 100
 --- !u!212 &212134882304714594
 SpriteRenderer:
@@ -190,7 +209,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 39851f75026b3f64d93eaeb35fab10b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,3 +236,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

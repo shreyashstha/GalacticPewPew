@@ -13,6 +13,8 @@ TagManager:
   - AttackSpeed
   - Asteroid
   - SlowEffect
+  - PlayerShooter
+  - PoisonBomb
   layers:
   - Default
   - TransparentFX
@@ -56,8 +58,8 @@ TagManager:
   - name: Planet
     uniqueID: 91575083
     locked: 0
-  - name: Drop
-    uniqueID: 2644609657
+  - name: AreaPowerUp
+    uniqueID: 3290170967
     locked: 0
   - name: EnemyProjectile
     uniqueID: 798376029
@@ -70,4 +72,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2429518467
+    locked: 0
+  - name: PowerUp
+    uniqueID: 2644609657
     locked: 0

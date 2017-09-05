@@ -9,6 +9,7 @@ public enum BezierControlPointMode
     aligned,
     mirrored
 }
+
 public class BezierSpline : MonoBehaviour
 {
     [SerializeField]

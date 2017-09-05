@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61880021991600016}
   - component: {fileID: 114769991554117012}
   - component: {fileID: 114870716157184800}
+  - component: {fileID: 114177659623637732}
   m_Layer: 8
   m_Name: Ship11_Binocular
   m_TagString: Enemy
@@ -166,6 +167,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114177659623637732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388874247549476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c4a1f3e0070246b28bc94f7991724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
+  splineGO: {fileID: 1412535852187164, guid: 0bb8d14c522aabc49bf14fdf770cc089, type: 2}
+  duration: 12
 --- !u!114 &114298869535706784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!114 &114870716157184800
 MonoBehaviour:
@@ -204,9 +221,9 @@ MonoBehaviour:
   barrel:
   - {fileID: 4350988116682622}
   - {fileID: 4343610646187294}
-  projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 3
-  chanceToShoot: 70
+  projectile: {fileID: 1218911606210580, guid: 9e14b02bcba8d4444b17ab26bc9c8aee, type: 2}
+  attackSpeed: 1.5
+  chanceToShoot: 90
 --- !u!212 &212482998335480230
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -237,7 +254,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1375621707
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300080, guid: 278b9bbb84e974b488a6b8a116d07772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -247,3 +264,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

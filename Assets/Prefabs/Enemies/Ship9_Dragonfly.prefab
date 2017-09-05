@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61286782639791568}
   - component: {fileID: 114179226203122688}
   - component: {fileID: 114100914848129464}
+  - component: {fileID: 114131076948894490}
   m_Layer: 8
   m_Name: Ship9_Dragonfly
   m_TagString: Enemy
@@ -150,9 +151,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel:
   - {fileID: 4091187408796480}
-  projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 2
-  chanceToShoot: 85
+  projectile: {fileID: 1218911606210580, guid: 9e14b02bcba8d4444b17ab26bc9c8aee, type: 2}
+  attackSpeed: 1
+  chanceToShoot: 95
+--- !u!114 &114131076948894490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128737892425906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c4a1f3e0070246b28bc94f7991724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
+  splineGO: {fileID: 1611015091870290, guid: 08c369f7c5f60d34db0c5a6ab199a43c, type: 2}
+  duration: 10
 --- !u!114 &114179226203122688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!114 &114977769695920734
 MonoBehaviour:
@@ -207,7 +224,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1375621707
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300064, guid: 278b9bbb84e974b488a6b8a116d07772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -217,3 +234,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

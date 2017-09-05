@@ -6,14 +6,18 @@ using UnityEngine;
 public class PowerUpSpawner : MonoBehaviour {
 
     private ObjectPool pool;
-    public int spawnPercent = 5;
-    public float spawnInterval = 0f;
-    public GameObject PowerUp;
+    [SerializeField]
+    public int spawnPercent = 0;        //Chance to spawn
+    [SerializeField]
+    public float spawnInterval = 0f;    //Interval between spawns
+    [SerializeField]
+    public float spawnDelay = 0f;       //Initial delay before spawn
+    public GameObject Holder;
 
     private void Awake()
     {
         pool = this.gameObject.GetComponent<ObjectPool>();
-        pool._OBP_ConstructObjectPool(PowerUp, 4);
+        pool._OBP_ConstructObjectPool(Holder, 4);
     }
 
     // Use this for initialization
@@ -28,6 +32,8 @@ public class PowerUpSpawner : MonoBehaviour {
 
     IEnumerator SpawnPowerUpCoroutine()
     {
+        yield return new WaitForSeconds(spawnDelay);
+
         while(!GameManager.instance.GameOverBool){
             int spawnChance = Random.Range(0, 99);
             if (spawnChance < spawnPercent)

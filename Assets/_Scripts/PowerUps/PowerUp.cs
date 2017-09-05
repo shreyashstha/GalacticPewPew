@@ -2,41 +2,83 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PowerUp : MonoBehaviour, IPowerUp {
+/// <summary>
+/// PowerUp Abstract Base class
+/// </summary>
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
+public abstract class PowerUp : MonoBehaviour {
 
-    private Transform player;
-    public Vector3 posRelativeToShip = new Vector3(0,0,0);
+    private const float DROPSPEED = 5f;
 
-    // Base Start function
-    /**
-     * Get's a reference to Player GameObject in the Scene via GameManager
-     * Collects other active gameObjects with the same tag as this object (NOTE: should I search instead using Script component?)
-     * removes other powerups of this type
-     * calls EnablePowerUp
-     **/
-    public virtual void Start () {
-        player = GameManager.instance.m_Player.transform;
-        GameObject[] otherPowerUpsInScene;
-        otherPowerUpsInScene = GameObject.FindGameObjectsWithTag(gameObject.tag);
-        if (otherPowerUpsInScene.Length > 0)
+    public Sprite dropSprite;
+    [SerializeField]
+    protected Vector3 relativePosition = new Vector3(0f, 0.5f, 0f);
+
+    protected SpriteRenderer _spriteRenderer;
+    protected Collider2D _collider;
+    protected ParticleSystem _dropEmission;
+    private bool dropping = true;
+    protected bool active = false;
+
+    protected virtual void Start()
+    {
+        //Get the SpriteRenderer and BoxCollider2D components
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        _collider = gameObject.GetComponent<Collider2D>();
+        _dropEmission = gameObject.GetComponent<ParticleSystem>();
+        //Set the drop sprite
+        _spriteRenderer.sprite = dropSprite;
+        //Set isTrigger
+        _collider.isTrigger = true;
+        _dropEmission.Play();
+        gameObject.tag = "Drop";
+    }
+
+    protected virtual void Update()
+    {
+        //Deactivates Power Up if out of boundary
+        if (Boundary.OutOfBoundary(transform.position, 0.5f))
         {
-            for (int i = 0; i < otherPowerUpsInScene.Length; i++)
+            DeactivatePowerUp();
+        }
+        else if (!active)
+        {
+            Movement();
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        //If power up is still falling
+        if (dropping)
+        {
+            //Activate Power Up if in contact with Player collider
+            if (other.gameObject.tag == "Player")
             {
-                if (otherPowerUpsInScene[i] != this.gameObject) Destroy(otherPowerUpsInScene[i]);
+                dropping = false;
+                active = true;
+                ActivatePowerUp();
             }
         }
-        EnablePowerUp();
     }
 
-    // Update is called once per frame
-    void Update () {
-        this.transform.position = player.transform.position + posRelativeToShip;
-	}
-
-    public virtual void DisablePowerUp()
+    protected virtual void Movement()
     {
-        Destroy(this.gameObject);
+        transform.Translate(Vector3.down * Time.deltaTime * DROPSPEED);
     }
 
-    public abstract void EnablePowerUp();
+    /// <summary>
+    /// ActivatePowerUp - Called when powerup object touches the player. SetUp function.
+    /// </summary>
+    public abstract void ActivatePowerUp();
+    /// <summary>
+    /// ExecutePowerUp - Called to execute the ability of the powerup
+    /// </summary>
+    public abstract void ExecutePowerUp();
+    /// <summary>
+    /// DeactivatePowerUp - Called to remove the powerup
+    /// </summary>
+    public abstract void DeactivatePowerUp();
+
 }

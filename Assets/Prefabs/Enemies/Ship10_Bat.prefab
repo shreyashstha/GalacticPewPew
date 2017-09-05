@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 50950890330383236}
   - component: {fileID: 61928907668643494}
   - component: {fileID: 114965807148872732}
-  - component: {fileID: 114489757192306178}
+  - component: {fileID: 114374912125535774}
+  - component: {fileID: 114122183913283272}
   m_Layer: 8
   m_Name: Ship10_Bat
   m_TagString: Enemy
@@ -137,6 +138,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114122183913283272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354134208566692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae2c0b3c7c303f498713b07387de927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrel: []
+  projectile: {fileID: 1218911606210580, guid: 9e14b02bcba8d4444b17ab26bc9c8aee, type: 2}
+  attackSpeed: 4
+  chanceToShoot: 70
+  numberOfShots: 3
+  intervalBetweenShots: 0.05
+  arcAngle: 45
+--- !u!114 &114374912125535774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354134208566692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813c4a1f3e0070246b28bc94f7991724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
+  splineGO: {fileID: 1908794548799450, guid: 6fcb79a2f1729b2479f54eef9e842b23, type: 2}
+  duration: 10
 --- !u!114 &114410017789743532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,24 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb49795fdd39ac439ff189cdca2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114489757192306178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1354134208566692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f709dd2a87566d4ea132b121e64af3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrel:
-  - {fileID: 4111322423661214}
-  projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 2
-  chanceToShoot: 60
-  numberOfShots: 2
-  intervalBetweenShots: 0.1
 --- !u!114 &114965807148872732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,6 +193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!212 &212705848003820028
 SpriteRenderer:
@@ -219,3 +236,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

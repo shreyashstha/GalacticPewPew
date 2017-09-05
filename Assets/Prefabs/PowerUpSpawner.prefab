@@ -52,9 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2498c10d212b51040a803355cf4ad142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPercent: 25
-  spawnInterval: 7
-  PowerUp: {fileID: 1049341820700554, guid: e7cd4db38dd7d7b42a2021c4c146f389, type: 2}
+  spawnPercent: 80
+  spawnInterval: 30
+  spawnDelay: 30
+  Holder: {fileID: 1049341820700554, guid: e7cd4db38dd7d7b42a2021c4c146f389, type: 2}
 --- !u!114 &114857833524380038
 MonoBehaviour:
   m_ObjectHideFlags: 1

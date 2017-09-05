@@ -10,17 +10,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IPoolableObject {
 
     //*****Public Variables*****
-    // Enemy variables
     public int startHealth = 100;
+    public GameObject hitParticle;
     //*****Private Variables*****
     private int health = 100;    // Enemy Health
     [SerializeField]
     private int score = 0;		// Score awarded to player on death
     private bool isDead = false;// Status of enemy
     //*****Components*****
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    private BoxCollider2D _boxCollider;
 
     //isDead property
     public bool IsDead
@@ -33,9 +33,9 @@ public class Enemy : MonoBehaviour, IPoolableObject {
 
     // Use this for initialization
     void Awake () {
-        animator = this.gameObject.GetComponent<Animator>();
-        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        boxCollider = this.gameObject.GetComponent<BoxCollider2D>();
+        _animator = this.gameObject.GetComponent<Animator>();
+        _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        _boxCollider = this.gameObject.GetComponent<BoxCollider2D>();
 	}
 
     private void Start()
@@ -65,14 +65,19 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     IEnumerator Die()
     {
         isDead = true;
-        boxCollider.enabled = false;
-        animator.SetTrigger("death");
-        yield return new WaitForSeconds(0.4f);
+        _spriteRenderer.enabled = false;
+        _boxCollider.enabled = false;
+        EmitParticles(0.5f);
+        yield return new WaitForSeconds(0.6f);
         //Score stuff 
         GameManager.instance.AddScore(this.score);
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Enemy collider gets triggered when colliding with PlayerProjectile
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Take Damage if hit by a player projectile
@@ -99,11 +104,20 @@ public class Enemy : MonoBehaviour, IPoolableObject {
             t += 0.15f;
 
             float amount = Mathf.Lerp(min, max, t);
-            spriteRenderer.material.SetFloat("_MaskAmount", amount);
+            _spriteRenderer.material.SetFloat("_MaskAmount", amount);
             yield return new WaitForEndOfFrame();
         }
 
-        spriteRenderer.material.SetFloat("_MaskAmount", 0.0f);
+        _spriteRenderer.material.SetFloat("_MaskAmount", 0.0f);
+    }
+
+    /// <summary>
+    /// Creates a particle emitter and destroys it after 0.3 secs
+    /// </summary>
+    private void EmitParticles(float time)
+    {
+        GameObject newParticle = Instantiate(hitParticle, transform.position, Quaternion.identity);
+        Destroy(newParticle, time);
     }
 
     //*****IPoolableObject implementation*****
@@ -111,10 +125,10 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     {
         this.health = this.startHealth;
         isDead = false;
-        boxCollider.enabled = true;
+        _boxCollider.enabled = true;
+        _spriteRenderer.enabled = true;
     }
 
-    public void OnDisable()
-    {
-    }
+    public void OnDisable(){}
+    //*****End Object pool implementation*****
 }

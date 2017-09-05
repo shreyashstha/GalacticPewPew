@@ -21,7 +21,6 @@ public struct PooledObject
         {
             if (!pool[i].activeInHierarchy)
             {
-                //pool[i].SetActive(true);
                 return pool[i];
             }
         }
@@ -138,14 +137,17 @@ public class ObjectPool : MonoBehaviour {
         }
         return null;
     }
-
     
+    /// <summary>
+    /// Passes reference of pool to GameManager to be destroyed.
+    /// </summary>
+    private void _OBP_DestroyPool()
+    {
+        GameManager.instance.GarbageCollectPooledObjects(pool);
+    }
 
-    //public void DestroyPool()
-    //{
-    //    foreach (PooledObject obj in pool)
-    //    {
-    //        GameManager.instance.CleanList(obj.pool);
-    //    }
-    //}
+    public void OnDestroy()
+    {
+        _OBP_DestroyPool();
+    }
 }

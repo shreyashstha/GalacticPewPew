@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerScript))]
 public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]
-    private int startHealth = 100;          // Player Starting Health
-    //startHealth Property
-    public int StartHealth
+    private int startHealth = 100;          //Player Starting Health
+    private int health = 0;                 //Current health
+    private PlayerScript _playerScript;     //PlayerScript Component
+
+    public int StartHealth      //startHealth Property
     {
         get
         {
             return startHealth;
         }
     }
-
-    private int health = 0;                 // Current health
-    //health property
-    public int Health
+    public int Health           //health property
     {
         get
         {
@@ -31,7 +31,11 @@ public class PlayerHealth : MonoBehaviour {
     public delegate void PlayerTakesDamage();
     public PlayerTakesDamage onPlayerTakesDamage;
 
-    
+    private void Awake()
+    {
+        _playerScript = gameObject.GetComponent<PlayerScript>();
+    }
+
     // Use this for initialization
     void Start () {
         health = startHealth;
@@ -57,16 +61,20 @@ public class PlayerHealth : MonoBehaviour {
     /// <param name="damage"></param>
     private void TakeDamage(int damage)
     {
-        health -= damage;
-        EmitParticles();
-
-        if (health <= 0) {
-            Die();
-        }
-
-        if (onPlayerTakesDamage != null)
+        if (_playerScript.Vulnerable)
         {
-            onPlayerTakesDamage();
+            health -= damage;
+            EmitParticles();
+
+            if (health <= 0)
+            {
+                Die();
+            }
+
+            if (onPlayerTakesDamage != null)
+            {
+                onPlayerTakesDamage();
+            }
         }
     }
 
@@ -81,7 +89,7 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     private void Die()
     {
-        GameManager.instance.GameOver();
+        GameManager.instance.SetGameOver();
         gameObject.SetActive(true);
         Destroy(this.gameObject, 2.5f);
     }

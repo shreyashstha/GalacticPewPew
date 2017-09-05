@@ -5,11 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPool))]
 public class PlayerShooter : MonoBehaviour {
 
+    //*****Public Variables*****
+    //Test
+    public bool autoShoot = false;
+    // Projectile Variables
+    public GameObject projectile;       // The projectile to shoot
+    public Transform shipNose;          // The transform to shoot the projectile from
     //*****Private Variables*****
-    //Player shooter variables
     [SerializeField]
-    private float attackSpeed = 0.0f;    // Player Attack Speed
-    public float AttackSpeed
+    private float attackSpeed = 0.0f;       // Player Attack Speed
+    private float attackSpeedCounter = 0.0f;    //Counter for attack speed interval
+    private ObjectPool pool;
+
+
+    //*****Property
+    public float AttackSpeed        //Attack Speed property
     {
         get
         {
@@ -22,13 +32,10 @@ public class PlayerShooter : MonoBehaviour {
         }
     }
 
-    private float attackSpeedCounter = 0.0f;    //Counter for attack speed interval
-    private ObjectPool pool;
-
-    //*****Public Variables*****
-    // Projectile Variables
-    public GameObject projectile;       // The projectile to shoot
-    public Transform shipNose;          // The transform to shoot the projectile from
+    //*****Delegate*****
+    //Delegate for those who care about when we shoot
+    public delegate void PlayerIsShooting();
+    public PlayerIsShooting onPlayerIsShooting;
 
     // Use this for initialization
     void Start () {
@@ -40,10 +47,14 @@ public class PlayerShooter : MonoBehaviour {
 	void Update () {
         // Add time to counter
         AdvanceCounter();
-        //Shoot();
-        // Check if player has touched screen then shoot  
-        if (Input.touchCount == 1) Shoot();
-	}
+        
+        if (!GameManager.instance.Paused)
+        {
+            // Check if player has touched screen then shoot  
+            if (Input.touchCount == 1) Shoot();
+        }
+        if (autoShoot) Shoot();
+    }
 
     private void Shoot()
     {
@@ -54,6 +65,7 @@ public class PlayerShooter : MonoBehaviour {
             spawnObject.transform.position = shipNose.position;
             spawnObject.transform.rotation = Quaternion.identity;
             spawnObject.SetActive(true);
+            DelegatePlayerIsShooting();
             attackSpeedCounter += Time.deltaTime;
         }
     }
@@ -62,5 +74,16 @@ public class PlayerShooter : MonoBehaviour {
     {
         if (attackSpeedCounter > 0.0f) attackSpeedCounter += Time.deltaTime;
         if (attackSpeedCounter > attackSpeed) attackSpeedCounter = 0.0f;
+    }
+
+    /// <summary>
+    /// Function that calls the delegate onPlayerTookDamage
+    /// </summary>
+    public void DelegatePlayerIsShooting()
+    {
+        if (onPlayerIsShooting != null)
+        {
+            onPlayerIsShooting();
+        }
     }
 }

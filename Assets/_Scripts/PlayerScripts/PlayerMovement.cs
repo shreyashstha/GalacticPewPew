@@ -32,8 +32,11 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        HandleInput();
-	}
+        if (!GameManager.instance.Paused)
+        {
+            HandleInput();
+        }
+    }
 
     private void HandleInput()
     {
@@ -64,7 +67,10 @@ public class PlayerMovement : MonoBehaviour {
 
         // Get new x position by transforming Screen point to World point
         Vector3 screenToWorldVector = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, this.transform.position.z - Camera.main.transform.position.z));
-        newShipPosition.x = Mathf.Clamp(screenToWorldVector.x, minXPos, maxXPos);
+        if(screenToWorldVector.y < -9f)
+        {
+            newShipPosition.x = Mathf.Clamp(screenToWorldVector.x, minXPos, maxXPos);
+        }
 
         // Change Animation states to represent movement
         if (transform.position.x > newShipPosition.x)

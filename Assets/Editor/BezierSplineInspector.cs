@@ -47,7 +47,6 @@ public class BezierSplineInspector : Editor
         }
 
         ShowDirections();
-        
     }
 
     public override void OnInspectorGUI()

@@ -15,9 +15,6 @@ public class EnemyMovementBezierSpline : EnemyMovement {
 
     // Use this for initialization
     void Start () {
-        splineGOCopy = Instantiate(splineGO);
-        spline = splineGOCopy.GetComponent<BezierSpline>();
-        Debug.Log(gameObject.GetInstanceID());
         ArrangeBezierPoints();
     }
 	
@@ -59,8 +56,11 @@ public class EnemyMovementBezierSpline : EnemyMovement {
 
     public override void OnEnable()
     {
-        splineGOCopy = Instantiate(splineGO);
-        spline = splineGOCopy.GetComponent<BezierSpline>();
+        if (splineGOCopy == null)
+        {
+            splineGOCopy = Instantiate(splineGO);
+            spline = splineGOCopy.GetComponent<BezierSpline>();
+        }
         progress = 0f;
         ArrangeBezierPoints();
     }

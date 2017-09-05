@@ -33,6 +33,7 @@ public class Asteroid : MonoBehaviour, IPoolableObject {
         hits--;
         if (hits == 0)
         {
+            StopAllCoroutines();
             GameManager.instance.PowerUpManager.DropPowerUp(this.transform.position);
             gameObject.SetActive(false);
         }
@@ -54,6 +55,7 @@ public class Asteroid : MonoBehaviour, IPoolableObject {
     //******Object Pooling******
     public void OnEnable()
     {
+        spriteRenderer.material.SetFloat("_MaskAmount", 0.0f);
         hits = 4;
         Vector2 force = new Vector2((float)Random.Range(7, 10) * 10f, (float)Random.Range(-1, 3) * 10f);
         rigidBody2D.AddForce(force);

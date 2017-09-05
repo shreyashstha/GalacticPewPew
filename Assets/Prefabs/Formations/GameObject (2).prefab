@@ -53,25 +53,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialDelay: 3
-  formationSpawnInterval: 11
+  formationSpawnInterval: 10
   enemySpawnInterval: 1.25
+  enemyIncrementInterval: 40
   enemies:
   - {fileID: 1518973067741386, guid: 47ad0c51d17e5514f9e5b3bce90d75a7, type: 2}
   - {fileID: 1330561093318496, guid: 1810b62829a048f43a7f996c63c6e978, type: 2}
   - {fileID: 1947698546487420, guid: ecc46a61f639fd04da676469de764064, type: 2}
   - {fileID: 1822144744622780, guid: 8333f87f9ab577143a42b877ee21b880, type: 2}
   - {fileID: 1080777729249818, guid: 96301defa2beb9e499763caceb2527a3, type: 2}
-  - {fileID: 1412645146711458, guid: cbb6c828c25e3a44db60f03fec629db8, type: 2}
+  - {fileID: 1574668144003446, guid: cbb6c828c25e3a44db60f03fec629db8, type: 2}
+  - {fileID: 1036562589441248, guid: 1fc5d410327026e4fb07c3ba6a6f76df, type: 2}
   - {fileID: 1340526919627946, guid: fcc080879f26e4d479c068cd7085b7c4, type: 2}
-  numberOfSpawns: 7
-  enemyIncrementInterval: 30
-  spawnPoints:
-  - {x: -7, y: 4, z: 0}
-  - {x: 7, y: 3, z: 0}
-  - {x: -7, y: 6, z: 0}
-  - {x: 7, y: 5, z: 0}
-  - {x: -7, y: 8, z: 0}
-  - {x: 7, y: 7, z: 0}
+  - {fileID: 1020564111352930, guid: c80fac6ae81d4e048916cc09a9e4bb55, type: 2}
+  - {fileID: 1128737892425906, guid: e82c5a45eb471f34886fb364ba68a7cd, type: 2}
+  - {fileID: 1388874247549476, guid: d613d32961ae8f0498eb8668729b0a93, type: 2}
+  - {fileID: 1354134208566692, guid: a1867022b8010fc4aa73ef8a02024956, type: 2}
+  - {fileID: 1780814960639236, guid: 098fc0681fcf7124eb6584515d60940f, type: 2}
+  - {fileID: 1523384678952738, guid: fc058ef729aa1be4288140b518bb1335, type: 2}
+  numberOfSpawns: 6
+  numFormationBeforeHorde: 5
+  leftPoints:
+  - {x: -8, y: 6, z: 0}
+  - {x: -8, y: 4, z: 0}
+  - {x: -8, y: 8, z: 0}
+  rightPoints:
+  - {x: 8, y: 5, z: 0}
+  - {x: 8, y: 7, z: 0}
+  - {x: 8, y: 9, z: 0}
 --- !u!114 &114995492099977322
 MonoBehaviour:
   m_ObjectHideFlags: 1

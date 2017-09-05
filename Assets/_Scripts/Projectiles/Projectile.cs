@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
 
     // Projectile variables
@@ -12,11 +13,15 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
     private int damage = 50;     // Projectile Damage
 
     // Components
-    private Rigidbody2D rb;
+    protected Rigidbody2D _rigidBody;
+    protected CircleCollider2D _circleCollider2D;
+    protected SpriteRenderer _spriteRenderer;
 
 	void Awake()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        _rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     //*****For objectPooling*****
@@ -31,15 +36,19 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
 
     // Update is called once per frame
     public virtual void Update () {
-        DestroyPorjectileOOB();
-	}
+        if (Boundary.OutOfBoundary(transform.position))
+        {
+            Hit();
+        }
+    }
 
     /// <summary>
+    /// Hit is called when the projectile hits an enemy ship.
+    /// Projectile behaviour can be controlled by this function.
     /// Destroys the projectile from the scene
     /// </summary>
     public virtual void Hit()
     {
-        //TODO: Change this to SetActive
         this.gameObject.SetActive(false);
     }
 
@@ -56,16 +65,7 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
     {
         //rb.velocity = new Vector2(0, speed);
         //rb.AddForce(this.transform.rotation * new Vector2(0, speed * 10));
-        rb.velocity = this.transform.rotation * new Vector2(0f, speed);
-    }
-
-    private void DestroyPorjectileOOB()
-    {
-        if (transform.position.y < Boundary.MinimumY() || transform.position.y > Boundary.MaximumY()
-            || transform.position.x < Boundary.MinimumX() || transform.position.x > Boundary.MaximumX())
-        {
-            Hit();
-        }
+        _rigidBody.velocity = this.transform.rotation * new Vector2(0f, speed);
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)

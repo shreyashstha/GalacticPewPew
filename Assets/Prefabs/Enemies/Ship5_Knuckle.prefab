@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
+    type: 2}
   score: 10
 --- !u!114 &114325103067355456
 MonoBehaviour:
@@ -164,11 +166,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel:
   - {fileID: 4815422097622072}
-  projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
+  projectile: {fileID: 1234486391598050, guid: 07a53d5df11e77b46b3a6a8ee7a07860, type: 2}
   attackSpeed: 1.6
   chanceToShoot: 100
   numberOfShots: 2
-  intervalBetweenShots: 0.2
+  intervalBetweenShots: 0.3
 --- !u!114 &114346776561250944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRotate: 0
   splineGO: {fileID: 1911184957475304, guid: 86d953c6bbc659544a6fa2878a541b3e, type: 2}
-  duration: 8
+  duration: 9.5
 --- !u!212 &212718881683841378
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -224,7 +226,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1375621707
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300032, guid: 278b9bbb84e974b488a6b8a116d07772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
