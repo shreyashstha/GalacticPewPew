@@ -22,6 +22,6 @@ public class ScoreUIUpdater : MonoBehaviour {
     /// </summary>
     void DisplayScore(int score)
     {
-        scoreBoard.text = "SCORE: " + score;
+        scoreBoard.text = "" + score;
     }
 }

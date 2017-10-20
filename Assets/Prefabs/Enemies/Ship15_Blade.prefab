@@ -166,10 +166,10 @@ MonoBehaviour:
   barrel:
   - {fileID: 4198336111557432}
   projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 2
-  chanceToShoot: 100
-  numberOfShots: 3
-  intervalBetweenShots: 0.25
+  attackSpeed: 1.5
+  chanceToShoot: 80
+  numberOfShots: 2
+  intervalBetweenShots: 0.2
 --- !u!114 &114324707062596264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +195,9 @@ MonoBehaviour:
   startHealth: 100
   hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
     type: 2}
+  dropObject: {fileID: 1245788372666858, guid: d2a44f576627b0d45ba7ef297edba697, type: 2}
+  hitClip: {fileID: 8300000, guid: 0d74667e05a4bd048ac9d3f390d6a4f1, type: 3}
+  deathClip: {fileID: 8300000, guid: 6e5a18511d6c1b74689974769885c120, type: 3}
   score: 10
 --- !u!212 &212376227123833002
 SpriteRenderer:
@@ -209,7 +212,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 39851f75026b3f64d93eaeb35fab10b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

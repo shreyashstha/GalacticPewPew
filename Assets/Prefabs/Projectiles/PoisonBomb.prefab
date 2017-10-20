@@ -95,6 +95,7 @@ MonoBehaviour:
   explosionDuration: 5
   explosionParticle: {fileID: 1003152062381208, guid: c3987038fc6c8c348a6e97fc0ec96251,
     type: 2}
+  explodeSound: {fileID: 8300000, guid: 6e5a18511d6c1b74689974769885c120, type: 3}
 --- !u!212 &212878307847605928
 SpriteRenderer:
   m_ObjectHideFlags: 1

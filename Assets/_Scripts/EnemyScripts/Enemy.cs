@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour, IPoolableObject {
 
     //*****Public Variables*****
     public int startHealth = 100;
-    public GameObject hitParticle;
+    public GameObject hitParticle;  //Explosion particl
+    public GameObject dropObject;   //TODO: Object dropped that user picks up to get heal.
+    public AudioClip hitClip;       //sound to play when hit by player projectile
+    public AudioClip deathClip;     //sound to play when being destroyed
     //*****Private Variables*****
     private int health = 100;    // Enemy Health
     [SerializeField]
@@ -52,7 +55,7 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         health -= damage;
         if (health <= 0 && !isDead)
         {
-            StartCoroutine(Die());
+            StartCoroutine(Die(this.score));
         } else if (!isDead)
         {
             StartCoroutine("Flash");
@@ -62,15 +65,18 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     /// <summary>
     /// Performs final duties
     /// </summary>
-    IEnumerator Die()
+    IEnumerator Die(int scoreToAdd)
     {
         isDead = true;
         _spriteRenderer.enabled = false;
         _boxCollider.enabled = false;
+        AudioSource.PlayClipAtPoint(deathClip, transform.position);
+        GameManager.instance.AddScore(scoreToAdd);
+        GameManager.instance.IncrementEnemyKills();
         EmitParticles(0.5f);
+        DropHealth();
         yield return new WaitForSeconds(0.6f);
         //Score stuff 
-        GameManager.instance.AddScore(this.score);
         gameObject.SetActive(false);
     }
 
@@ -83,9 +89,12 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         // Take Damage if hit by a player projectile
         if (other.gameObject.tag == "PlayerProjectile")
         {
+            AudioSource.PlayClipAtPoint(hitClip, transform.position);
             Projectile projectile = other.gameObject.GetComponent<Projectile>();
             TakeDamage(projectile.GetDamage());
-            //projectile.Hit();
+        }else if (other.gameObject.tag == "Asteroid")
+        {
+            StartCoroutine(Die(0));
         }
     }
 
@@ -118,6 +127,18 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     {
         GameObject newParticle = Instantiate(hitParticle, transform.position, Quaternion.identity);
         Destroy(newParticle, time);
+    }
+
+    /// <summary>
+    /// Determines if item needs to be dropped for player
+    /// </summary>
+    private void DropHealth()
+    {
+        int random = UnityEngine.Random.Range(0, 99);
+        if (random < 5)
+        {
+            Instantiate(dropObject, transform.position, Quaternion.identity);
+        }
     }
 
     //*****IPoolableObject implementation*****

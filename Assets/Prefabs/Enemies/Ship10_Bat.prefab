@@ -151,11 +151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel: []
   projectile: {fileID: 1218911606210580, guid: 9e14b02bcba8d4444b17ab26bc9c8aee, type: 2}
-  attackSpeed: 4
-  chanceToShoot: 70
+  attackSpeed: 3.1
+  chanceToShoot: 80
   numberOfShots: 3
+  coroutine: 1
   intervalBetweenShots: 0.05
-  arcAngle: 45
+  arcAngle: 40
 --- !u!114 &114374912125535774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +196,9 @@ MonoBehaviour:
   startHealth: 100
   hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
     type: 2}
+  dropObject: {fileID: 1245788372666858, guid: d2a44f576627b0d45ba7ef297edba697, type: 2}
+  hitClip: {fileID: 8300000, guid: 0d74667e05a4bd048ac9d3f390d6a4f1, type: 3}
+  deathClip: {fileID: 8300000, guid: 6e5a18511d6c1b74689974769885c120, type: 3}
   score: 10
 --- !u!212 &212705848003820028
 SpriteRenderer:

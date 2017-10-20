@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUps:
-  - {fileID: 1262369569991254, guid: daaa5c0bc589ab746a166ae199b31f42, type: 2}
+  - {fileID: 1328218589687296, guid: 9fed67e71b4f43342b1ec9dece5eae8a, type: 2}
   - {fileID: 1178612099764022, guid: 6c86ebefef7b0e043b6eefda08104ceb, type: 2}
   - {fileID: 1206774579446570, guid: fb4ee9960fa5ffd44aa811bfc18385bd, type: 2}
   - {fileID: 1639671293172258, guid: 4587bc09036431a4c8d8b75f1caad6bf, type: 2}
@@ -68,5 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce4fab0520c50544a0258994f4072f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1929012296460070, guid: 749718534eeaa5f4ba96458d8e8957d0, type: 2}
+  player: {fileID: 1421683908421126, guid: 1673c4116eb9b0a44947a3a337b59ee7, type: 2}
   m_playerStartPosition: {x: 0, y: -8.5}
+  pauseMenu: {fileID: 0}
+  _healthPieceButton: {fileID: 0}
+  _shieldButton: {fileID: 0}

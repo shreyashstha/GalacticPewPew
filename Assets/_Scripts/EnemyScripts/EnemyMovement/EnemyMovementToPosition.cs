@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyMovementToPosition : EnemyMovement {
 
+    //Position variables
+    [SerializeField]
+    private int maxX, minX, maxY, minY;
+
     public float initialSpeed = 0.0f;
     public bool moveAfterPosition = false;
     public float postSpeed = 0.0f;
@@ -24,14 +28,14 @@ public class EnemyMovementToPosition : EnemyMovement {
 	protected override void Update ()
     {
         Move();
-
     }
 
     void InitMovement()
     {
-        startPosition = new Vector3((float)Random.Range(1, 6), 12f, 0f);
+        inPosition = false;
+        startPosition = new Vector3((float)Random.Range(minX, maxX + 1), 12f, 0f);
         endPosition = startPosition;
-        endPosition.y = (float)Random.Range(1,4);
+        endPosition.y = (float)Random.Range(minY, maxY + 1);
 
         if (moveLeft)
         {
@@ -73,7 +77,6 @@ public class EnemyMovementToPosition : EnemyMovement {
                 newPos.x = xpos;
                 this.transform.position = newPos;
                 if (xpos <= leftBoundary) moveLeft = true;
-
             }
         }
     }

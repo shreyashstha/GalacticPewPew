@@ -46,7 +46,15 @@ public class PowerUpSpawner : MonoBehaviour {
 
     void SpawnPowerUp(GameObject spawnObject)
     {
-        Vector3 pos = new Vector3(-8f, (float)Random.Range(-1, 4), 0);
+        Vector3 pos;
+        int random = Random.Range(0, 99);
+        if (random < 50)
+        {
+            pos = new Vector3(-8f, (float)Random.Range(-1, 4), 0);
+        }else
+        {
+            pos = new Vector3(8f, (float)Random.Range(-1, 4), 0);
+        }
         spawnObject.transform.position = pos;
         spawnObject.transform.rotation = Quaternion.identity;
         spawnObject.SetActive(true);

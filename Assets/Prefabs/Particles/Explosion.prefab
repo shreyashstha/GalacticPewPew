@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4765393047160010}
   - component: {fileID: 198231585561213414}
   - component: {fileID: 199905907874087956}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552213518143996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40548697, y: -0.112920366, z: 9.5390625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

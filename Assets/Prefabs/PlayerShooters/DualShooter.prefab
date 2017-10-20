@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1178612099764022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3603292, y: 6.5402417, z: 0}
+  m_LocalPosition: {x: 2.9285498, y: 3.8577137, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4036014639759150}
@@ -175,7 +175,8 @@ MonoBehaviour:
   autoShoot: 0
   projectile: {fileID: 1245100261290520, guid: dda155411b43769478448914d24872a6, type: 2}
   shipNose: {fileID: 4385735610407360}
-  attackSpeed: 0.45
+  shootClip: {fileID: 8300000, guid: 888aa5ad15da27c4db9cd4b048b5318f, type: 3}
+  attackSpeed: 0.4
 --- !u!114 &114708895885482604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,7 +205,8 @@ MonoBehaviour:
   autoShoot: 0
   projectile: {fileID: 1245100261290520, guid: dda155411b43769478448914d24872a6, type: 2}
   shipNose: {fileID: 4036014639759150}
-  attackSpeed: 0.45
+  shootClip: {fileID: 8300000, guid: 888aa5ad15da27c4db9cd4b048b5318f, type: 3}
+  attackSpeed: 0.4
 --- !u!198 &198003960886987776
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -264,7 +266,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -231700840
+  randomSeed: -1008175603
   InitialModule:
     serializedVersion: 3
     enabled: 1

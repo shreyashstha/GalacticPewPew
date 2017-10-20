@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
 
     // Projectile variables
@@ -14,13 +14,13 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
 
     // Components
     protected Rigidbody2D _rigidBody;
-    protected CircleCollider2D _circleCollider2D;
+    protected Collider2D _collider2D;
     protected SpriteRenderer _spriteRenderer;
 
 	void Awake()
     {
         _rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        _circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
+        _collider2D = gameObject.GetComponent<Collider2D>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
     public virtual void Update () {
         if (Boundary.OutOfBoundary(transform.position))
         {
-            Hit();
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -47,6 +47,7 @@ public class Projectile : MonoBehaviour, IProjectile, IPoolableObject {
     /// Projectile behaviour can be controlled by this function.
     /// Destroys the projectile from the scene
     /// </summary>
+    /// <param name="hitClip">The sound to emit based on what was hit</param>
     public virtual void Hit()
     {
         this.gameObject.SetActive(false);

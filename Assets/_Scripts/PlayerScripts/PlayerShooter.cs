@@ -11,6 +11,7 @@ public class PlayerShooter : MonoBehaviour {
     // Projectile Variables
     public GameObject projectile;       // The projectile to shoot
     public Transform shipNose;          // The transform to shoot the projectile from
+    public AudioClip shootClip;
     //*****Private Variables*****
     [SerializeField]
     private float attackSpeed = 0.0f;       // Player Attack Speed
@@ -65,6 +66,7 @@ public class PlayerShooter : MonoBehaviour {
             spawnObject.transform.position = shipNose.position;
             spawnObject.transform.rotation = Quaternion.identity;
             spawnObject.SetActive(true);
+            AudioSource.PlayClipAtPoint(shootClip, transform.position);
             DelegatePlayerIsShooting();
             attackSpeedCounter += Time.deltaTime;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour, IPoolableObject {
 
     public float speed;
+    public AudioClip hitClip;       //sound to play when hit by player
     private Rigidbody2D rigidBody2D;
     private SpriteRenderer spriteRenderer;
     private int hits = 4;
@@ -22,15 +23,16 @@ public class Asteroid : MonoBehaviour, IPoolableObject {
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.position.x > 7f)
+        if (Boundary.OutOfBoundary(transform.position, 3f))
         {
-            gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 
     void Hit()
     {
         hits--;
+        AudioSource.PlayClipAtPoint(hitClip, transform.position);
         if (hits == 0)
         {
             StopAllCoroutines();
@@ -57,7 +59,14 @@ public class Asteroid : MonoBehaviour, IPoolableObject {
     {
         spriteRenderer.material.SetFloat("_MaskAmount", 0.0f);
         hits = 4;
-        Vector2 force = new Vector2((float)Random.Range(7, 10) * 10f, (float)Random.Range(-1, 3) * 10f);
+        Vector2 force;
+        if (!InRightQuadrant())
+        {
+            force = new Vector2((float)Random.Range(7, 10) * 10f, (float)Random.Range(-1, 3) * 10f);
+        }else
+        {
+            force = new Vector2(-(float)Random.Range(7, 10) * 10f, (float)Random.Range(-1, 3) * 10f);
+        }
         rigidBody2D.AddForce(force);
     }
 
@@ -89,5 +98,25 @@ public class Asteroid : MonoBehaviour, IPoolableObject {
         }
 
         spriteRenderer.material.SetFloat("_MaskAmount", 0.0f);
+    }
+
+    /// <summary>
+    /// Returns true if located in the right quadrant of the game screen, false othewise
+    /// </summary>
+    /// <returns>boolean</returns>
+    protected bool InRightQuadrant()
+    {
+        if (this.transform.position.x > 0)
+        {
+            return true;
+        }
+        else if (this.transform.position.x < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

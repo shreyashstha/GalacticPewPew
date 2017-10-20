@@ -6,9 +6,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]
-    private int startHealth = 100;          //Player Starting Health
+    private int startHealth = 40;          //Player Starting Health
     private int health = 0;                 //Current health
     private PlayerScript _playerScript;     //PlayerScript Component
+    [SerializeField]
+    private AudioClip hitClip;      //AudioClip to play when hit
 
     public int StartHealth      //startHealth Property
     {
@@ -27,9 +29,12 @@ public class PlayerHealth : MonoBehaviour {
 
     public GameObject hitParticle;          // Particle that is instantiated when player is hit
 
-    //Delegate for taking damage
+    //Delegate when taking damage
     public delegate void PlayerTakesDamage();
     public PlayerTakesDamage onPlayerTakesDamage;
+    //Delegate when adding health
+    public delegate void PlayerAddHealth();
+    public PlayerAddHealth onPlayerAddHealth;
 
     private void Awake()
     {
@@ -40,10 +45,6 @@ public class PlayerHealth : MonoBehaviour {
     void Start () {
         health = startHealth;
     }
-	
-	// Update is called once per frame
-	void Update () {
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -52,6 +53,19 @@ public class PlayerHealth : MonoBehaviour {
             Projectile projectile = collision.GetComponent<Projectile>();
             TakeDamage(projectile.GetDamage());
             //projectile.Hit();
+        }if (collision.gameObject.tag == "HealthPiece")
+        {
+            GameManager.instance.IncrementHealthPiece();
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public void AddHealth()
+    {
+        this.health = Mathf.Clamp(this.health + 1, this.health, this.startHealth);
+        if (onPlayerAddHealth != null)
+        {
+            onPlayerAddHealth();
         }
     }
 
@@ -65,6 +79,7 @@ public class PlayerHealth : MonoBehaviour {
         {
             health -= damage;
             EmitParticles();
+            AudioSource.PlayClipAtPoint(hitClip, transform.position);
 
             if (health <= 0)
             {
@@ -89,7 +104,7 @@ public class PlayerHealth : MonoBehaviour {
     /// </summary>
     private void Die()
     {
-        GameManager.instance.SetGameOver();
+        GameManager.instance.GameOver();
         gameObject.SetActive(true);
         Destroy(this.gameObject, 2.5f);
     }

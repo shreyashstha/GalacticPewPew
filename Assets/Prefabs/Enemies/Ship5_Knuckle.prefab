@@ -152,6 +152,9 @@ MonoBehaviour:
   startHealth: 100
   hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
     type: 2}
+  dropObject: {fileID: 1245788372666858, guid: d2a44f576627b0d45ba7ef297edba697, type: 2}
+  hitClip: {fileID: 8300000, guid: 0d74667e05a4bd048ac9d3f390d6a4f1, type: 3}
+  deathClip: {fileID: 8300000, guid: 6e5a18511d6c1b74689974769885c120, type: 3}
   score: 10
 --- !u!114 &114325103067355456
 MonoBehaviour:
@@ -226,7 +229,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1375621707
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300032, guid: 278b9bbb84e974b488a6b8a116d07772, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -84,6 +84,7 @@ MonoBehaviour:
   autoShoot: 0
   projectile: {fileID: 1245100261290520, guid: dda155411b43769478448914d24872a6, type: 2}
   shipNose: {fileID: 4605607011873714}
+  shootClip: {fileID: 8300000, guid: 888aa5ad15da27c4db9cd4b048b5318f, type: 3}
   attackSpeed: 0.33
 --- !u!114 &114260523931214092
 MonoBehaviour:

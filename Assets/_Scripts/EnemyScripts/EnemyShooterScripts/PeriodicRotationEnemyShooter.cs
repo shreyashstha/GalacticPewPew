@@ -9,6 +9,8 @@ public class PeriodicRotationEnemyShooter : EnemyShooter {
     [SerializeField]
     private int numberOfShots;
     [SerializeField]
+    private bool coroutine = true;
+    [SerializeField]
     private float intervalBetweenShots = 1.0f;
     [SerializeField]
     private float arcAngle = 90f;
@@ -18,7 +20,26 @@ public class PeriodicRotationEnemyShooter : EnemyShooter {
         int random = Random.Range(0, 99);
         if (random < chanceToShoot)
         {
-            StartCoroutine(ShootCoroutine (numberOfShots, intervalBetweenShots));
+            if (coroutine)
+            {
+                StartCoroutine(ShootCoroutine(numberOfShots, intervalBetweenShots));
+            }
+            else
+            {
+                ShootNoCoroutine(numberOfShots);
+            }
+        }
+    }
+
+    private void ShootNoCoroutine(int numberOfShots)
+    {
+        if (numberOfShots <= 0) numberOfShots = 1;
+        float angle = arcAngle / (numberOfShots - 1);
+        for (int i = 0; i < numberOfShots; i++)
+        {
+            float startAngle = 0 - (arcAngle / 2);
+            Quaternion rotation = Quaternion.AngleAxis(startAngle + angle * i, Vector3.forward);
+            InstantiateProjectiles(rotation);
         }
     }
 
@@ -30,7 +51,6 @@ public class PeriodicRotationEnemyShooter : EnemyShooter {
         {
             float startAngle = 0 - (arcAngle / 2);
             Quaternion rotation = Quaternion.AngleAxis(startAngle + angle * i, Vector3.forward);
-            //Debug.Log(rotation.eulerAngles.x + "  " + rotation.eulerAngles.y + "  " + rotation.eulerAngles.z);
             InstantiateProjectiles(rotation);
             yield return new WaitForSeconds(intervalBetweenShots);
         }

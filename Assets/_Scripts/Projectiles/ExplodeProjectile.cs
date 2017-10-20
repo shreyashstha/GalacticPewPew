@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class ExplodeProjectile : Projectile {
 
     [SerializeField]
@@ -10,15 +11,9 @@ public class ExplodeProjectile : Projectile {
     protected float explosionDuration;    //Duration used in coroutine
     [SerializeField]
     private GameObject explosionParticle;   //Particle emitted during hit
+    [SerializeField]
+    protected AudioClip explodeSound;       //Sound to play when exploding
     private bool firstParticle = true;
-
-    public override void Update()
-    {
-        if (Boundary.OutOfBoundary(transform.position))
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
 
     /// <summary>
     /// Override:
@@ -58,12 +53,12 @@ public class ExplodeProjectile : Projectile {
     public virtual IEnumerator ExplodeCoroutine()
     {
         //Store original radius
-        float radius = _circleCollider2D.radius;
-        _circleCollider2D.radius = explosionRadius;
+        float radius = ((CircleCollider2D)_collider2D).radius;
+        ((CircleCollider2D)_collider2D).radius = explosionRadius;
         //Wait duration
         yield return new WaitForSeconds(explosionDuration);
         //Revert radius
-        _circleCollider2D.radius = radius;
+        ((CircleCollider2D)_collider2D).radius = radius;
         this.gameObject.SetActive(false);
     }
 

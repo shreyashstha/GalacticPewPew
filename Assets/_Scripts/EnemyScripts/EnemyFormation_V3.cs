@@ -20,6 +20,8 @@ public class EnemyFormation_V3 : MonoBehaviour {
     private int numberOfSpawns = 0;              //Number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
     [SerializeField]
     private int numFormationBeforeHorde = 0;    //Number of formations to spawn before spawning a horde
+    [SerializeField]
+    private int maxHorde = 6;       //Maximum number of formations in a horde
     private ObjectPool pool;        //Object pool reference
 
     //These are handled by coroutines.
@@ -85,30 +87,33 @@ public class EnemyFormation_V3 : MonoBehaviour {
             //Choose number of enemies to spawn
             int spawnCount = Random.Range(4, numberOfSpawns + 1);
 
-            //Check if we need to spawn a horde
-            if (hordeCountDown == 0)
-            {
-                //Number of formation
-                int count = 3 + ((int)Time.time / 120);
-                Mathf.Clamp(count, 3, 8);
-                for (int i = 0; i < count; i++)
-                {
-                    //Choose random enemy
-                    int index = Random.Range(0, maxEnemyIndex);
-                    StartCoroutine(SpawnEnemiesCoroutine(index, GetSpawnPoint(), spawnCount));
-                    yield return new WaitForSeconds(4.25f);
-                }
-                hordeCountDown = numFormationBeforeHorde;
-                yield return new WaitForSeconds(formationSpawnInterval);
-            }
-            else
-            {
-                //Choose a spawnPoint
-                
-                StartCoroutine(SpawnEnemiesCoroutine(enemyIndex, GetSpawnPoint(), spawnCount));
-                hordeCountDown--;
-                yield return new WaitForSeconds(formationSpawnInterval);
-            }
+            //Choose a spawnPoint
+            StartCoroutine(SpawnEnemiesCoroutine(enemyIndex, GetSpawnPoint(), spawnCount));
+            yield return new WaitForSeconds(formationSpawnInterval);
+
+            ////Check if we need to spawn a horde
+            //if (hordeCountDown == 0)
+            //{
+            //    //Number of formation
+            //    int count = 3 + ((int)Time.time / 90);
+            //    count = Mathf.Clamp(count, 3, maxHorde);
+            //    for (int i = 0; i < count; i++)
+            //    {
+            //        //Choose random enemy
+            //        int index = Random.Range(0, maxEnemyIndex);
+            //        StartCoroutine(SpawnEnemiesCoroutine(index, GetSpawnPoint(), 5));
+            //        yield return new WaitForSeconds(4.25f);
+            //    }
+            //    hordeCountDown = numFormationBeforeHorde;
+            //    yield return new WaitForSeconds(formationSpawnInterval);
+            //}
+            //else
+            //{
+            //    //Choose a spawnPoint
+            //    StartCoroutine(SpawnEnemiesCoroutine(enemyIndex, GetSpawnPoint(), spawnCount));
+            //    hordeCountDown--;
+            //    yield return new WaitForSeconds(formationSpawnInterval);
+            //}
         }   
     }
 
@@ -159,7 +164,6 @@ public class EnemyFormation_V3 : MonoBehaviour {
         {
             yield return new WaitForSeconds(incrementInterval);
             maxEnemyIndex = Mathf.Clamp(maxEnemyIndex + 1, 0, enemies.Length);
-            //Debug.Log("Incrementing Max Index.....MaxEnemyCoroutine....." + Time.time + " " + maxEnemyIndex);
         }
     }
 
@@ -171,9 +175,8 @@ public class EnemyFormation_V3 : MonoBehaviour {
     {
         while (!GameManager.instance.GameOverBool)
         {
-            //Increment every 5 minutes
-            yield return new WaitForSeconds(100);
-            formationSpawnInterval = Mathf.Clamp(formationSpawnInterval - 1f, 7f, formationSpawnInterval);
+            yield return new WaitForSeconds(90f);
+            formationSpawnInterval = Mathf.Clamp(formationSpawnInterval - 1f, 6f, formationSpawnInterval);
         }
     }
 }

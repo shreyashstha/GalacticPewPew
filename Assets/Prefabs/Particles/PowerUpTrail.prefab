@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4883329925785770}
   - component: {fileID: 198515856674492926}
   - component: {fileID: 199582005087549848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PowerUpTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

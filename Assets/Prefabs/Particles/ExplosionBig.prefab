@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4392618681142466}
   - component: {fileID: 198076928542133472}
   - component: {fileID: 199259973794307578}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ExplosionBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4515131314587206}
   - component: {fileID: 198526661928104062}
   - component: {fileID: 199584072548500682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ExplosionInside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1409260673054794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3551555, y: 7.04, z: 9.5390625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515131314587206}

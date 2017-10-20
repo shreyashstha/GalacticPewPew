@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4883329925785770}
   - component: {fileID: 198515856674492926}
   - component: {fileID: 199582005087549848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,13 +34,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904980511680048}
-  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: -5.02, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &198515856674492926
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -179,6 +179,9 @@ MonoBehaviour:
   startHealth: 100
   hitParticle: {fileID: 1552213518143996, guid: 6b5483120459d7f40bc4b8444ee9ece1,
     type: 2}
+  dropObject: {fileID: 1245788372666858, guid: d2a44f576627b0d45ba7ef297edba697, type: 2}
+  hitClip: {fileID: 8300000, guid: 0d74667e05a4bd048ac9d3f390d6a4f1, type: 3}
+  deathClip: {fileID: 8300000, guid: 6e5a18511d6c1b74689974769885c120, type: 3}
   score: 10
 --- !u!114 &114780819882851268
 MonoBehaviour:

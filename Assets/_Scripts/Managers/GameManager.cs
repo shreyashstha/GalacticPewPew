@@ -18,7 +18,17 @@ public class GameManager : MonoBehaviour {
     private Vector2 m_playerStartPosition = new Vector2(0f,-7.5f);     //Starting position for player
     private bool gameOver = false;            //Boolean true if player is dead. Game is over.
     private bool paused = false;    //TODO: Pause functionality
+    [SerializeField]
+    private GameObject pauseMenu;   //The Pause Menu
     private int score = 0;      //Current Player Score
+
+    //Random variables for various stuff
+    private int healthPieceCount = 0;       //Number of health pieces collected for health button
+    private int maxHealthPieces = 5;        //Mas health pieces needed to activate button
+    public ButtonCoolDownFiller _healthPieceButton; //Health Piece button script
+    private int shieldKillCount = 0;     //Number of enemies killed
+    private int maxShieldKillCount = 15;    //Number of enemies to kill for shield
+    public ButtonCoolDownFiller _shieldButton;  //Shield button script 
 
     public GameObject m_Player            //activePlayer property
     {
@@ -77,6 +87,10 @@ public class GameManager : MonoBehaviour {
     public delegate void PlayerTookDamage(float health);
     public PlayerTookDamage onPlayerTookDamage;
 
+    //Delegate for when health is added to player
+    public delegate void PlayerAddedHealth(float health);
+    public PlayerAddedHealth onPlayerAddedHealth;
+
     //Delegate for when Power up changes
     public delegate void PowerUpChange(Sprite sprite);
     public PowerUpChange onPowerUpChange;
@@ -111,6 +125,7 @@ public class GameManager : MonoBehaviour {
 
         //Subscribe to when Player Takes damage
         m_playerHealth.onPlayerTakesDamage += DelegatePlayerTookDamage;
+        m_playerHealth.onPlayerAddHealth += DelegatePlayerAddedHealth;
 
         //Reset the score at the start of the game
         ResetScore();
@@ -120,7 +135,7 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PauseGame();
+            TogglePause();
         }
 
     }
@@ -129,6 +144,17 @@ public class GameManager : MonoBehaviour {
     /// Function that calls the delegate onPlayerTookDamage
     /// </summary>
     public void DelegatePlayerTookDamage()
+    {
+        if (onPlayerTookDamage != null)
+        {
+            onPlayerTookDamage((float)m_playerHealth.Health / (float)m_playerHealth.StartHealth);
+        }
+    }
+
+    /// <summary>
+    /// Function that calls the delegate onPlayerAddedHealth
+    /// </summary>
+    public void DelegatePlayerAddedHealth()
     {
         if (onPlayerTookDamage != null)
         {
@@ -164,30 +190,90 @@ public class GameManager : MonoBehaviour {
     /// Pauses and Unpauses the game. Controlled by a button in the UI. TODO: Handle showing ui elements here.
     /// This is called by PauseButton
     /// </summary>
-    public void PauseGame()
+    public void TogglePause()
     {
         if (!paused)
         {
             paused = true;
             Time.timeScale = 0.0f;
+            pauseMenu.SetActive(true);
         }
         else
         {
             paused = false;
             Time.timeScale = 1.0f;
+            pauseMenu.SetActive(false);
         }
+    }
+
+    public void IncrementHealthPiece()
+    {
+        if (healthPieceCount < maxHealthPieces)
+        {
+            healthPieceCount++;
+        }
+        _healthPieceButton.UpdateFillCount((float)healthPieceCount / (float)maxHealthPieces);
+    }
+
+    public void ResetPlayerHealth()
+    {
+        if (healthPieceCount == maxHealthPieces)
+        {
+            m_playerScript.AddHealthToPlayer();
+            healthPieceCount = 0;
+            _healthPieceButton.UpdateFillCount((float)healthPieceCount / (float)maxHealthPieces);
+        }
+    }
+
+    public void IncrementEnemyKills()
+    {
+        this.shieldKillCount++;
+        if (shieldKillCount <= maxShieldKillCount) _shieldButton.UpdateFillCount((float)shieldKillCount / (float)maxShieldKillCount);
+    }
+
+    public void ActivatePlayerShield()
+    {
+        if (this.shieldKillCount >= this.maxShieldKillCount)
+        {
+            m_playerScript.ActivateShield();
+            this.shieldKillCount = 0;
+            _shieldButton.UpdateFillCount((float)shieldKillCount / (float)maxShieldKillCount);
+        }
+    }
+
+    //**********Level Manager Functions**********
+    /// <summary>
+    /// Calls GameOver and tells Level Manager to restart game
+    /// </summary>
+    public void RestartGame()
+    {
+        TogglePause();
+        GameOver();
+        LevelManager.LoadGame();
+    }
+
+    /// <summary>
+    /// Calls GameOver and tells Level Manager to restart game
+    /// </summary>
+    public void MainMenu()
+    {
+        TogglePause();
+        GameOver();
+        LevelManager.LoadMainMenu();
     }
 
     /// <summary>
     /// Saves the score and loads the GameOver scene
     /// This is only called by Player health script when health is 0
     /// </summary>
-    public void SetGameOver()
+    public void GameOver()
     {
+        Debug.Log(Time.time);
         SaveScore();
         gameOver = true;
         LevelManager.LoadGameOver(); // Is this a good?
     }
+    //**********End Level Manager Functions**********
 
     //Calls the GarbageCollectCoroutine
     public void GarbageCollectPooledObjects(List<PooledObject> list)

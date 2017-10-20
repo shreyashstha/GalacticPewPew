@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 50922826985002574}
   - component: {fileID: 58019123152429910}
   - component: {fileID: 114021947850427046}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  hitClip: {fileID: 8300000, guid: 95ebc8da389f842438aa37f93a7bb1e0, type: 3}
 --- !u!212 &212659968726985016
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -148,3 +149,5 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

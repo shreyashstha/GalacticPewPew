@@ -6,10 +6,14 @@ public class PlayerScript : MonoBehaviour {
     
     [SerializeField]
     private GameObject startShooter;
+    [SerializeField]
+    private GameObject shield;
     private SpriteRenderer _spriteRenderer;
     private Collider2D _collider;
-    private GameObject shooter;
-    private bool noNeedToReset = true;
+    private PlayerHealth _playerHealthScript;
+    private GameObject _playerShooter;
+    private GameObject _playerShield;
+    private bool noNeedToReset = false;
     private bool vulnerable = true;
 
     public bool Vulnerable
@@ -18,14 +22,23 @@ public class PlayerScript : MonoBehaviour {
         {
             return vulnerable;
         }
+
+        set
+        {
+            vulnerable = value;
+            Debug.Log(vulnerable);
+        }
     }
 
     // Use this for initialization
     void Start () {
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         _collider = gameObject.GetComponent<Collider2D>();
-        shooter = transform.GetChild(0).gameObject;
-        gameObject.GetComponent<PlayerHealth>().onPlayerTakesDamage += ResetShooter;        
+        ResetShooter();
+        _playerHealthScript = gameObject.GetComponent<PlayerHealth>();
+        _playerHealthScript.onPlayerTakesDamage += ResetShooter;
+        _playerShield = Instantiate(shield, transform.position, Quaternion.identity);
+        _playerShield.SetActive(false);
     }
 
     public void ResetShooter()
@@ -40,14 +53,19 @@ public class PlayerScript : MonoBehaviour {
 
     public void ChangeShooter(Transform shooter)
     {
-        Destroy(this.shooter);
+        if (this._playerShooter != null) Destroy(this._playerShooter);
         shooter.parent = this.transform;
-        this.shooter = shooter.gameObject;
+        this._playerShooter = shooter.gameObject;
         noNeedToReset = false;
     }
 
-    public void ToggleVulnerability()
+    public void AddHealthToPlayer()
     {
-        vulnerable = !vulnerable;
+        _playerHealthScript.AddHealth();
+    }
+
+    public void ActivateShield()
+    {
+        _playerShield.SetActive(true);
     }
 }

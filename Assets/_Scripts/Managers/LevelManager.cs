@@ -14,4 +14,14 @@ public class LevelManager : MonoBehaviour {
     {
         SceneManager.LoadScene("GameOver");
     }
+
+    public static void LoadGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public static void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

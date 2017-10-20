@@ -10,13 +10,10 @@ public class HealthBarUIUpdater : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         healthBar = this.gameObject.GetComponent<Image>();
-
-        //Subscribe to OnPlayerTakesDamage
-        //if (GameManager.instance.PlayerHealth == null) Debug.Log("Empty PlayerHealth");
-        //GameManager.instance.PlayerHealth.onPlayerTakesDamage += UpdateHealth;
         UpdateHealth(1);
 
         GameManager.instance.onPlayerTookDamage += UpdateHealth;
+        GameManager.instance.onPlayerAddedHealth += UpdateHealth;
     }
 
     /// <summary>
