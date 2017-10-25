@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enemy formation v3.
+///
+/// This class is responsible for spawning enemies throughout the game.
+/// </summary>
 [RequireComponent(typeof(ObjectPool))]
 public class EnemyFormation_V3 : MonoBehaviour {
 
@@ -10,14 +15,22 @@ public class EnemyFormation_V3 : MonoBehaviour {
     private float initialDelay = 0.0f;                  //Time after which this formation is enabled. (Should we change to score?)
     [SerializeField]
     private float formationSpawnInterval = 0.0f;        //Interval between spawning formations
+	[SerializeField]
+    private float initEnemySpawnInterval = 0.0f;        //Initial delay between spawning individual enemies in a formation.
     [SerializeField]
-    private float enemySpawnInterval = 0.0f;              //Delay between spawning individual enemies in a formation.
+    private float finalEnemySpawnInterval = 0.0f;       //Final delay between spawning individual enemies in a formation.
+    private float enemySpawnInterval = 0f;				//Current delay between spawning individual enemies in a formation. This should be used in the spawn functions.
+	[SerializeField]
+    private int initNumberOfSpawns = 0;          		//Initial number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
     [SerializeField]
+    private int finalNumberOfSpawns = 0;                //Number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
+    private int numberOfSpawns = 0;						//Current number of enemies to spawns. This should be used in the spawn functions.
+	[SerializeField]
     private float enemyIncrementInterval = 0.0f;        //Time between increasing the type of enemy to spawn.
-    [SerializeField]
-    private GameObject[] enemies;            //List of spawnable enemy gameobjects.
-    [SerializeField]
-    private int numberOfSpawns = 0;              //Number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
+	[SerializeField]
+    private GameObject[] enemies;            			//List of spawnable enemy gameobjects.
+
+    //deprecated
     [SerializeField]
     private int numFormationBeforeHorde = 0;    //Number of formations to spawn before spawning a horde
     [SerializeField]
@@ -49,10 +62,12 @@ public class EnemyFormation_V3 : MonoBehaviour {
     {
         //Set up object pooling
         //TODO: Manipulating spawn points
-        //spawnPoint = this.transform.position;
         pool = gameObject.GetComponent<ObjectPool>();
         pool._OBP_ConstructObjectPool(enemies, 10);
 
+        //Initialize spawn interval and number
+        enemySpawnInterval = initEnemySpawnInterval;
+        numberOfSpawns = initNumberOfSpawns;
         //Start the game after some delay.
         Invoke("StartCoroutines", initialDelay);
     }
@@ -123,13 +138,15 @@ public class EnemyFormation_V3 : MonoBehaviour {
         Vector3 spawnPoint;
         if (spawnOnRight)
         {
-            spawnPoint = rightPoints[Random.Range(0, rightPoints.Length)];
+            spawnPoint = rightPoints[0];
             spawnOnRight = !spawnOnRight;
+            Shuffle(rightPoints);
         }
         else
         {
-            spawnPoint = leftPoints[Random.Range(0, leftPoints.Length)];
+            spawnPoint = leftPoints[0];
             spawnOnRight = !spawnOnRight;
+			Shuffle(leftPoints);
         }
         return spawnPoint;
     }
@@ -175,8 +192,32 @@ public class EnemyFormation_V3 : MonoBehaviour {
     {
         while (!GameManager.instance.GameOverBool)
         {
-            yield return new WaitForSeconds(90f);
-            formationSpawnInterval = Mathf.Clamp(formationSpawnInterval - 1f, 6f, formationSpawnInterval);
+            yield return new WaitForSeconds(60f);
+            //formationSpawnInterval = Mathf.Clamp(formationSpawnInterval - 1f, 6f, formationSpawnInterval);
+            enemySpawnInterval = Mathf.Clamp(enemySpawnInterval - 0.50f, finalEnemySpawnInterval, initEnemySpawnInterval);
+            numberOfSpawns = Mathf.Clamp (numberOfSpawns + 1, initNumberOfSpawns, finalNumberOfSpawns);
+
+            Debug.Log("Spawn Interval: " + enemySpawnInterval);
+            Debug.Log("Number of spawns: " + numberOfSpawns);
         }
     }
+
+    /// <summary>
+    /// Shuffle the specified array.
+    /// Implements Knuth Shuffle to suffle the array of spawn points.
+    /// </summary>
+    /// <param name="array">Array (Vector3 array)</param>
+    private Vector3[] Shuffle (Vector3[] array)
+	{
+		Vector3 temp = array [0];
+		array [0] = array[array.Length - 1];
+		array[array.Length - 1] = temp;
+		for (int i = 0; i < array.Length - 1; i++) {
+			int next = Random.Range(i, array.Length - 1);
+			temp = array[i];
+			array [i] = array[next];
+			array[next] = temp;
+		}
+		return array;
+	}
 }

@@ -19,10 +19,17 @@ public class TestScript : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-        PrintTest();
-        //pool._OBP_ConstructObjectPool(enemy, 5);
-        //StartCoroutine(SpawnEnemy(enemy,spawnInterval));
+    void Start ()
+	{
+		//PrintTest();
+		//pool._OBP_ConstructObjectPool(enemy, 5);
+		//StartCoroutine(SpawnEnemy(enemy,spawnInterval));
+
+		int[] array = new int[]{ 0, 1, 2, 3, 4, 5 };
+		array = KnuthShuffle (array);
+		for (int i = 0; i < array.Length; i++) {
+			print(array[i]);
+		}
 	}
 	
 	// Update is called once per frame
@@ -120,4 +127,18 @@ public class TestScript : MonoBehaviour {
 
         return (p0 * mt3) + (3 * p1 * mt2 * t) + (3 * p2 * (1 - t) * t2) + (p3 * t3);
     }
+
+	private int[] KnuthShuffle (int[] array)
+	{
+		int temp = array [0];
+		array [0] = array[array.Length - 1];
+		array[array.Length - 1] = temp;
+		for (int i = 0; i < array.Length - 1; i++) {
+			int next = Random.Range(i, array.Length - 1);
+			temp = array[i];
+			array [i] = array[next];
+			array[next] = temp;
+		}
+		return array;
+	}
 }

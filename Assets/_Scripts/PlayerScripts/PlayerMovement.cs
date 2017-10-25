@@ -67,10 +67,14 @@ public class PlayerMovement : MonoBehaviour {
 
         // Get new x position by transforming Screen point to World point
         Vector3 screenToWorldVector = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, this.transform.position.z - Camera.main.transform.position.z));
-        if(screenToWorldVector.y < -9f)
-        {
-            newShipPosition.x = Mathf.Clamp(screenToWorldVector.x, minXPos, maxXPos);
-        }
+
+        //To limit where the player can put their finger in the y axis to move the ship
+//        if(screenToWorldVector.y < -9f)
+//        {
+//            newShipPosition.x = Mathf.Clamp(screenToWorldVector.x, minXPos, maxXPos);
+//        }
+
+		newShipPosition.x = Mathf.Clamp(screenToWorldVector.x, minXPos, maxXPos);
 
         // Change Animation states to represent movement
         if (transform.position.x > newShipPosition.x)
