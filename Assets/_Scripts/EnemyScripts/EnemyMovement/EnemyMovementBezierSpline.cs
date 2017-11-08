@@ -33,13 +33,17 @@ public class EnemyMovementBezierSpline : EnemyMovement {
     }
 
     //*********** EnemyMovement Implementation **********
-    public override void Move()
-    {
-        progress += Time.deltaTime / duration;
-        if (progress >= 1f) 
-        {
-            progress = 1f;
-            gameObject.SetActive(false);
+    public override void Move ()
+	{
+		progress += Time.deltaTime / duration;
+		if (progress >= 1f) {
+			if (!spline.Loop) {
+				progress = 1f;
+				gameObject.SetActive (false);
+			} else {
+				progress -= 1f;
+			}
+            
         }
         Vector3 position = spline.GetPoint(progress);
         transform.position = position;
@@ -47,7 +51,7 @@ public class EnemyMovementBezierSpline : EnemyMovement {
 
     public override void OnDisable()
     {
-        //ResetPoints
+        //Reset bezier points if it was flipped.
         if (!moveLeft)
         {
             spline.FlipPoints();

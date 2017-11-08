@@ -330,7 +330,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174314115}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000030517578, y: 611.71594, z: 0}
+  m_LocalPosition: {x: 0.000030517578, y: 637.6666, z: 0}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_Children:
   - {fileID: 791075742}
@@ -730,7 +730,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837938774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -580.71594, z: 0}
+  m_LocalPosition: {x: 0, y: -606.6666, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 959058818}
@@ -918,8 +918,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 959058814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.5, y: 358, z: 0}
-  m_LocalScale: {x: 0.55875, y: 0.55875, z: 0.55875}
+  m_LocalPosition: {x: 240, y: 400, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 174314116}
   - {fileID: 837938775}
@@ -1535,26 +1535,6 @@ Prefab:
     - target: {fileID: 1509423043555282, guid: 3895b02634a6f3c40a0e14265e12f44b, type: 2}
       propertyPath: m_Name
       value: Formation
-      objectReference: {fileID: 0}
-    - target: {fileID: 114251263279221922, guid: 3895b02634a6f3c40a0e14265e12f44b,
-        type: 2}
-      propertyPath: initEnemySpawnInterval
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114251263279221922, guid: 3895b02634a6f3c40a0e14265e12f44b,
-        type: 2}
-      propertyPath: initNumberOfSpawns
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114251263279221922, guid: 3895b02634a6f3c40a0e14265e12f44b,
-        type: 2}
-      propertyPath: finalEnemySpawnInterval
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114251263279221922, guid: 3895b02634a6f3c40a0e14265e12f44b,
-        type: 2}
-      propertyPath: finalNumberOfSpawns
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3895b02634a6f3c40a0e14265e12f44b, type: 2}

@@ -133,8 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel: []
   projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
-  attackSpeed: 6
-  chanceToShoot: 85
+  attackSpeed: 4
+  chanceToShoot: 90
   numberOfShots: 5
   coroutine: 1
   intervalBetweenShots: 0.25
@@ -174,9 +174,9 @@ MonoBehaviour:
   maxY: 1
   minY: 7
   initialSpeed: 5
-  moveAfterPosition: 0
-  postSpeed: 0
-  movementLength: 0
+  moveAfterPosition: 1
+  postSpeed: 2
+  movementLength: 4
 --- !u!212 &212221089444160494
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -186,6 +186,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -201,6 +202,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

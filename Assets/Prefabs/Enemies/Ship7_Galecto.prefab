@@ -122,8 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrel: []
   projectile: {fileID: 1234486391598050, guid: 07a53d5df11e77b46b3a6a8ee7a07860, type: 2}
-  attackSpeed: 3.5
-  chanceToShoot: 85
+  attackSpeed: 3
+  chanceToShoot: 90
   numberOfShots: 3
   coroutine: 0
   intervalBetweenShots: 0
@@ -186,6 +186,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -201,6 +202,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

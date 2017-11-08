@@ -225,7 +225,7 @@ MonoBehaviour:
   - {fileID: 4870007264138544}
   - {fileID: 4009701818625972}
   projectile: {fileID: 1960531701481090, guid: e7d087cdbf3f15e49a082cf375434053, type: 2}
-  attackSpeed: 1.5
+  attackSpeed: 1.4
   chanceToShoot: 80
 --- !u!212 &212297606038352952
 SpriteRenderer:
@@ -236,6 +236,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -251,6 +252,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
