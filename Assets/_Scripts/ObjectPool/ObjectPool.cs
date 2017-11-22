@@ -33,6 +33,10 @@ public struct PooledObject
     }
 }
 
+/// <summary>
+/// Class Name: ObjectPool
+/// Main class that is responsible for holding object pools for this game object.
+/// </summary>
 public class ObjectPool : MonoBehaviour {
 
     //*****private Varibles*****
@@ -52,7 +56,7 @@ public class ObjectPool : MonoBehaviour {
     }
 
     /// <summary>
-    /// Instantiates another GameObject to add to pool with index
+    /// Instantiates another GameObject to add to pool with index and returns it
     /// </summary>
     /// <param name="index">The ith pool item in the list to expand</param>
     /// <returns></returns>
@@ -69,7 +73,7 @@ public class ObjectPool : MonoBehaviour {
     /// Creates and returns list of instatiated gameobjects
     /// </summary>
     /// <param name="ob">GameObject to pool</param>
-    /// <param name="count">Number of GameObjects to pool</param>
+    /// <param name="count">Number of GameObjects to instantiate in the pool</param>
     /// <returns>List<GameObject> list of instantiated GameObjects</returns>
     private List<GameObject> CreatePool(GameObject ob, int count)
     {
@@ -86,17 +90,24 @@ public class ObjectPool : MonoBehaviour {
     }
 
     /// <summary>
-    /// This function has to be called inorder to pool objects.
+    /// Public function that creates the pool. This function has to be called inorder to pool objects.
     /// </summary>
-    /// <param name="ob"></param>
-    /// <param name="count"></param>
-    /// <param name="expand"></param>
+    /// <param name="ob">GameObject - Game object to pool</param>
+    /// <param name="count">int - Amount to instantiate in the pool</param>
+    /// <param name="expand">bool - pool can expand if true</param>
 	public void _OBP_ConstructObjectPool(GameObject ob, int count, bool expand = true)
     {
         this.expandIfEmpty = expand;
+        //Create and add new pool in the list.
         pool.Add(new PooledObject(ob, count, CreatePool(ob, count)));
     }
 
+    /// <summary>
+    /// Overridden function that instantiates multiple pools for each gameobject in an array of gameobjects.
+    /// </summary>
+    /// <param name="ob">Gameobject - Array of gameobjects to pool</param>
+    /// <param name="count">int - Amount to instantiate in the pool</param>
+    /// <param name="expand">bool - pool can expand if true</param>
     public void _OBP_ConstructObjectPool(GameObject[] ob, int count, bool expand = true)
     {
         for (int i = 0; i < ob.Length; i++)

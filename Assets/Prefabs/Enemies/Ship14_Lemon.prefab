@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae2c0b3c7c303f498713b07387de927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootAnimation: 0
   barrel: []
   projectile: {fileID: 1011071060659112, guid: 6f731615d74ae3f4191e132ab12b6cd7, type: 2}
   attackSpeed: 4
@@ -169,12 +170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
-  maxX: 0
-  minX: 4
+  maxX: 4
+  minX: 0
   maxY: 1
   minY: 7
   initialSpeed: 5
   moveAfterPosition: 1
+  moveRandAfterPosition: 0
   postSpeed: 2
   movementLength: 4
 --- !u!212 &212221089444160494

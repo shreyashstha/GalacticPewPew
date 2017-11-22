@@ -54,11 +54,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDelay: 3
   formationSpawnInterval: 7
-  initEnemySpawnInterval: 3
+  initEnemySpawnInterval: 1.25
   finalEnemySpawnInterval: 1.25
-  initNumberOfSpawns: 3
+  initNumberOfSpawns: 2
   finalNumberOfSpawns: 7
-  enemyIncrementInterval: 60
+  enemyIncrementInterval: 42
   difficultyIncreaseTime: 21
   enemies:
   - {fileID: 1518973067741386, guid: 47ad0c51d17e5514f9e5b3bce90d75a7, type: 2}
@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 1523384678952738, guid: fc058ef729aa1be4288140b518bb1335, type: 2}
   - {fileID: 1184930333344886, guid: 721d126fddbb9f949af9b84af3496c55, type: 2}
   - {fileID: 1098715078741928, guid: a83ce58a3a3da11449167749b6c9196d, type: 2}
+  bigEnemy: {fileID: 1518420887517070, guid: 40ccc9ddf9c04904b8b4f9e31d4bca8b, type: 2}
   numFormationBeforeHorde: 5
   maxHorde: 6
   hordeSpawnInterval: 5

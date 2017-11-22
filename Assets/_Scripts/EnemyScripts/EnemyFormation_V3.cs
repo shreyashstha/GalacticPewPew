@@ -19,7 +19,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
     private float initEnemySpawnInterval = 0.0f;        //Initial delay between spawning individual enemies in a formation.
     [SerializeField]
     private float finalEnemySpawnInterval = 0.0f;       //Final delay between spawning individual enemies in a formation.
-    private float enemySpawnInterval = 0f;				//Current delay between spawning individual enemies in a formation. This should be used in the spawn functions.
+    private float enemySpawnInterval = 1.25f;				//Current delay between spawning individual enemies in a formation. This should be used in the spawn functions.
 	[SerializeField]
     private int initNumberOfSpawns = 0;          		//Initial number of enemies to spawn in a formation. Formation is a set of enemies spawned once (SpawnEnemies coroutine).
     [SerializeField]
@@ -31,6 +31,8 @@ public class EnemyFormation_V3 : MonoBehaviour {
     private float difficultyIncreaseTime = 0.0f;		//Time interval to increase difficulty.
 	[SerializeField]
     private GameObject[] enemies;            			//List of spawnable enemy gameobjects.
+    [SerializeField]
+    private GameObject bigEnemy;    //TODO: make an array
     [SerializeField]
     private int numFormationBeforeHorde = 0;    //Number of formations to spawn before spawning a horde
     [SerializeField]
@@ -66,6 +68,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
         //TODO: Manipulating spawn points
         pool = gameObject.GetComponent<ObjectPool>();
         pool._OBP_ConstructObjectPool(enemies, 10);
+        pool._OBP_AddPooledObject(bigEnemy, 1);
 
         //Initialize spawn interval and number
         enemySpawnInterval = initEnemySpawnInterval;
@@ -102,7 +105,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
             //Choose random enemy form 0 to maxEnemyIndex
             int enemyIndex = Random.Range(0, maxEnemyIndex);
             //Choose number of enemies to spawn
-            int spawnCount = Random.Range(4, numberOfSpawns + 1);
+            int spawnCount = Random.Range(numberOfSpawns, numberOfSpawns + 1);
 
             //If you decide not to spawn hordes, uncomment the code below and comment the if clause.
 //            //Choose a spawnPoint
@@ -112,16 +115,19 @@ public class EnemyFormation_V3 : MonoBehaviour {
             //Check if we need to spawn a horde
             if (hordeCountDown == 0)
             {
-                //Number of formation
-                int count = 3 + ((int)Time.time / 90);
-                count = Mathf.Clamp(count, 3, maxHorde);
-                for (int i = 0; i < count; i++)
-                {
-                    //Choose random enemy
-                    int index = Random.Range(0, maxEnemyIndex);
-                    StartCoroutine(SpawnEnemiesCoroutine(index, GetSpawnPoint(), 5));
-					yield return new WaitForSeconds(hordeSpawnInterval);
-                }
+                //           //Number of formation
+                //           int count = 3 + ((int)Time.time / 90);
+                //           count = Mathf.Clamp(count, 3, maxHorde);
+                //           for (int i = 0; i < count; i++)
+                //           {
+                //               //Choose random enemy
+                //               int index = Random.Range(0, maxEnemyIndex);
+                //               StartCoroutine(SpawnEnemiesCoroutine(index, GetSpawnPoint(), 5));
+                //yield return new WaitForSeconds(hordeSpawnInterval);
+                //           }
+                //           hordeCountDown = numFormationBeforeHorde;
+                //           yield return new WaitForSeconds(formationSpawnInterval);
+                StartCoroutine(SpawnEnemiesCoroutine(enemies.Length, GetSpawnPoint(), 1));
                 hordeCountDown = numFormationBeforeHorde;
                 yield return new WaitForSeconds(formationSpawnInterval);
             }
@@ -197,7 +203,7 @@ public class EnemyFormation_V3 : MonoBehaviour {
         {
             yield return new WaitForSeconds(difficultyIncreaseTime);
             //formationSpawnInterval = Mathf.Clamp(formationSpawnInterval - 1f, 6f, formationSpawnInterval);
-            enemySpawnInterval = Mathf.Clamp(enemySpawnInterval - 0.50f, finalEnemySpawnInterval, initEnemySpawnInterval);
+            //enemySpawnInterval = Mathf.Clamp(enemySpawnInterval - 0.50f, finalEnemySpawnInterval, initEnemySpawnInterval);
             numberOfSpawns = Mathf.Clamp (numberOfSpawns + 1, initNumberOfSpawns, finalNumberOfSpawns);
 
             Debug.Log("Spawn Interval: " + enemySpawnInterval);

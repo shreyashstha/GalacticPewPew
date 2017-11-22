@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class Name: Enemy
+/// Description: Enemy base class.
+/// - handling enemy health
+/// - getting components
+/// - colliding with projectiles
+/// - disabling
+/// - dropping player health piece
+/// </summary>
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -41,13 +50,9 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         _boxCollider = this.gameObject.GetComponent<BoxCollider2D>();
 	}
 
-    private void Start()
-    {
-        
-    }
-
     /// <summary>
-    /// Reduces health value by damage amount
+    /// Reduces health value by damage amount.
+    /// Call coroutine Die if health is 0.
     /// </summary>
     /// <param name="damage">Amount of health to reduce</param>
     private void TakeDamage(int damage)
@@ -63,7 +68,9 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     }
 
     /// <summary>
-    /// Performs final duties
+    /// Performs final duties:
+    /// Disables sprite renderer, box collider
+    /// Gamemanager - adds score, increments kill count
     /// </summary>
     IEnumerator Die(int scoreToAdd)
     {
@@ -76,12 +83,11 @@ public class Enemy : MonoBehaviour, IPoolableObject {
         EmitParticles(0.5f);
         DropHealth();
         yield return new WaitForSeconds(0.6f);
-        //Score stuff 
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Enemy collider gets triggered when colliding with PlayerProjectile
+    /// Enemy collider gets triggered when colliding with PlayerProjectile and Asteroid
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,6 +100,7 @@ public class Enemy : MonoBehaviour, IPoolableObject {
             TakeDamage(projectile.GetDamage());
         }else if (other.gameObject.tag == "Asteroid")
         {
+            //Kill player without adding score.
             StartCoroutine(Die(0));
         }
     }
@@ -142,6 +149,10 @@ public class Enemy : MonoBehaviour, IPoolableObject {
     }
 
     //*****IPoolableObject implementation*****
+    /// <summary>
+    /// Reset health
+    /// enabling components
+    /// </summary>
     public void OnEnable()
     {
         this.health = this.startHealth;
